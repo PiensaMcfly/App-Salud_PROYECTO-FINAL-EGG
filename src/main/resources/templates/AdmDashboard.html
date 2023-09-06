@@ -19,72 +19,86 @@
   <!-- <link rel="stylesheet" href="/dashProfUsu.css"> -->
   <link rel="stylesheet" href="/botonesAnimaciones.css">
   <link rel="stylesheet" href="/dashboard.css">
-  
+
 
   <title>WebApp Salud</title>
 
 
-  
+
 
 </head>
 <!-- HOLA PROBRANDO CHANGO PORFAVOR URIELKJASDFNKSDJFNKJSDFNKJASDFN -->
 
 <!-- HOLA PROBRANDO CHANGO PORFAVOR  }OTRO CAMBIO -->
 
+<!-- HOLA PROBANDO PROBANDO CHANGUITO POR FAVOR CHRISTIAN-->
+
 <body>
   <!-- -----------------NAV BAR------------ -->
-  <header><nav th:replace="fragments/navbar :: nav"></nav></header>
+  <header>
+    <nav th:replace="fragments/navbar :: nav"></nav>
+  </header>
   <!-- ------------------------------------ -->
   <br>
   <br>
   <br>
-<!-- -----------------SideBar------------ -->
-  <aside class="sidebar1"> <div th:replace="fragments/sidebar :: sidebar"> </div></aside>
-<!-- ------------------------------------- -->
- 
-<center>
-<section class="paneladm">
-  <h1 class="visually-hidden">Panel Administrativo</h1>
+  <!-- -----------------SideBar------------ -->
+  <aside class="sidebar1">
+    <div th:replace="fragments/sidebar :: sidebar"> </div>
+  </aside>
+  <!-- ------------------------------------- -->
 
-  <div class="px-4 py-5 my-5 text-center">
-    <!-- <img class="d-block mx-auto mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
-    <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'PACIENTE')}">
-      <img  th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}"  id="rotate-scale-up-vertical" alt="mdo" width="160" height="160" class="rounded-circle">
-    </div>
+  <center>
+    <section class="paneladm">
+      <h1 class="visually-hidden">Panel Administrativo</h1>
 
- <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'MEDICO')}">
-   <img   th:src="@{/imagen/perfil1/__${session.usuariosession.matricula}__}" id="rotate-scale-up-vertical" alt="mdo" width="160" height="160" class="rounded-circle"> 
- </div>
+      <div class="px-4 py-5 my-5 text-center">
+        <!-- <img class="d-block mx-auto mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+        <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'PACIENTE')}">
+          <img th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}" id="rotate-scale-up-vertical" alt="mdo"
+            width="160" height="160" class="rounded-circle">
+        </div>
 
- <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'ADMIN')}">
-    <img   th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}" id="rotate-scale-up-vertical" alt="mdo" width="160" height="160" class="rounded-circle"> 
- </div>
+        <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'MEDICO')}">
+          <img th:src="@{/imagen/perfil1/__${session.usuariosession.matricula}__}" id="rotate-scale-up-vertical"
+            alt="mdo" width="160" height="160" class="rounded-circle">
+        </div>
 
-    <h1 class="display-5 fw-bold text-body-emphasis" th:text="'Bienvenido ' + ${session.usuariosession.nombre}"></h1>
-    <div class="col-lg-6 mx-auto">
-      <p class="lead mb-4 textoadm" >¡Bienvenido al Panel Administrativo!
-     Aquí, en el sidebar izquierdo, tienes acceso a todas las acciones clave de la página: crear, modificar, listar y explorar. Nuestra interfaz es fácil de usar,
-     y nuestro equipo de soporte está listo para ayudarte en cualquier momento. ¡Disfruta de todas las herramientas que necesitas para una experiencia excepcional!
-        </p>
-      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-       <a href="/admin/listaProfesionales"> <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Profesionales</button></a>
-        <a href="/admin/listaUsuarios"><button type="button" class="btn btn-success btn-lg px-4">Pacientes</button></a>
+        <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'ADMIN')}">
+          <img th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}" id="rotate-scale-up-vertical" alt="mdo"
+            width="160" height="160" class="rounded-circle">
+        </div>
+
+        <h1 class="display-5 fw-bold text-body-emphasis" th:text="'Bienvenido ' + ${session.usuariosession.nombre}">
+        </h1>
+        <div class="col-lg-6 mx-auto">
+          <p class="lead mb-4 textoadm">¡Bienvenido al Panel Administrativo!
+            Aquí, en el sidebar izquierdo, tienes acceso a todas las acciones clave de la página: crear, modificar,
+            listar y explorar. Nuestra interfaz es fácil de usar,
+            y nuestro equipo de soporte está listo para ayudarte en cualquier momento. ¡Disfruta de todas las
+            herramientas que necesitas para una experiencia excepcional!
+          </p>
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a href="/admin/listaProfesionales"> <button type="button"
+                class="btn btn-primary btn-lg px-4 gap-3">Profesionales</button></a>
+            <a href="/admin/listaUsuarios"><button type="button"
+                class="btn btn-success btn-lg px-4">Pacientes</button></a>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
-</center>
-<section class=" text-center container">
-  <div class="row mt-3">
+    </section>
+  </center>
+  <section class=" text-center container">
+    <div class="row mt-3">
       <div class="divVolver">
-          <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+        <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
       </div>
-  </div>
-</section>
+    </div>
+  </section>
 
 
 
-<!-- <footer th:replace="/fragments/footerChico :: footerChico" ></footer> -->
+  <!-- <footer th:replace="/fragments/footerChico :: footerChico" ></footer> -->
   <!-- -----------contenedor main conteiner ------------------------------------------->
   <!-- ------------------------------------------------------------------------------------------------------------>
   <!-----------------------------SCRIPTS------------------------------------------------ -->

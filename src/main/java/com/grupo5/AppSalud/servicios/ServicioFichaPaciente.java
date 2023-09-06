@@ -29,6 +29,8 @@ import org.springframework.stereotype.Service;
 public class ServicioFichaPaciente {
 
     @Autowired
+    ServicioHistoriaClinica serviHistoriaClinica;
+    @Autowired
     FichaPacienteRepository fichapacienteRepositorio;
 
     @Autowired
@@ -57,7 +59,10 @@ public class ServicioFichaPaciente {
         Profesional profesional = profesionalRepository.buscarPorMatricula(matricula);
         fichapaciente.setProfesional(profesional);
         fichapacienteRepositorio.save(fichapaciente);
-
+        
+        List<FichaPaciente> ficha = turno.getUsuario().getHistoriaC().getFichapaciente();
+        ficha.add(fichapaciente);
+        serviHistoriaClinica.modificar(turno.getUsuario().getDni(),ficha , turno.getUsuario(), notasDeLaVisita);
     }
 
     public void eliminarFichaPaciente(String id) {

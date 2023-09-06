@@ -16,6 +16,7 @@
               crossorigin="anonymous" /><!--Aca Linkeamos Font Awsome para Incluir algunos recursos! -->
         <link rel="icon" href="/img/icono.png" type="image/svg+xml"> <!--  <-icono pestaña -->
         <link rel="stylesheet" href="/dashboard.css">
+        <link rel="stylesheet" href="/botonesAnimaciones.css">
         <title>WebApp Salud</title>
     </head>
     <body>
@@ -37,123 +38,40 @@
 
 <br><br><br>
 <main>
-    <div class="container">
-        <section class="containerDash">
-            <div class="py-5 text-center">
-                <div>
-                    <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'PACIENTE')}">
-                        <img       th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}"  id="rotate-scale-up-vertical" alt="mdo" width="160" height="160" class="rounded-circle">
-                        </div>
-                        <h2>Dashboard Usuario</h2>
-                        <p>Administrador de Perfil de Usuario</p>
-                        <br>                   
-                        <h3> Bienvenido/a  <span th:text="${session.usuariosession.nombre}">  </span>  <span th:text="${session.usuariosession.apellido}"></span></h3>
-                        <br>
-                        <br>
-                    </div>
-                </div>
-                <div>
-                    <div class="row g-5">
-                        <div class="list-group">
-                            <a href="/turnos/usuario/asignar_turno" class="list-group-item list-group-item-action active" aria-current="true">
-                              <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">TURNOS</h5>
-                                <small class="text-body-secondary">3 days ago</small>
-                              </div>
-                              <p class="mb-1">Some placeholder content in a paragraph.</p>
-                              <small>And some small print.</small>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                              <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">PROFESIONALES</h5>
-                                <small class="text-body-secondary">3 days ago</small>
-                              </div>
-                               <p class="mb-1">especialidades,obras sociales,calificaciones,historial</p>
-                               <small class="text-body-secondary">And some muted small print.</small>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                              <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">HISTORIA CLINICA</h5>
-                                <small class="text-body-secondary">3 days ago</small>
-                              </div>
-                              <p class="mb-1">consulte su historia clinica</p>
-                              <small class="text-body-secondary">And some muted small print.</small>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                              <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">DATOS PERSONALES</h5>
-                                <small class="text-body-secondary">3 days ago</small>
-                              </div>
-                              <p class="mb-1">consulte su historia clinica</p>
-                              <small class="text-body-secondary">And some muted small print.</small>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                              <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">BUSQUEDAS DE PROFESIONAL</h5>
-                                <small class="text-body-secondary">3 days ago</small>
-                              </div>
-                              <p class="mb-1">especilidad,calificacion,ubicacion,telemedicina</p>
-                              <small class="text-body-secondary">And some muted small print.</small>
-                            </a>
-                          </div>
-    
-            <div class="col-md-6 ">
-                        <h4 class="d-flex justify-content-between align-items-center mb-3">
-
-                            <div  >
-                                <form class="card p-2"  method="post">
-                                    <div class="input-group">
-                                        <input type="text"  class="form-control" placeholder="Buscar de citas medicas">
-                                        <button type="submit" class="btn btn-primary"> Citas Medicas </button>
-                                    </div>
-                                </form>
-                                <form class="card p-2">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Buscar Turnos">
-                                        <button type="submit" class="btn btn-primary"> Consulta de Turnos  </button>
-                                    </div>
-                                </form>
-                                <form class="card p-2">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Buscar Historia Clinica">
-                                        <button type="submit" class="btn btn-primary"> Consulta de Historia Clinica  </button>
-                                    </div>
-                                </form>
-                                <form class="card p-2">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Buscar por calificacion Profesionales">
-                                        <button type="submit" class="btn btn-primary"> Consulta de Profesionales  </button>
-                                    </div>
-                                </form>
-                                <form class="card p-2">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Buscar por Obra Social">
-                                        <button type="submit" class="btn btn-primary"> Consulta de Profesionales  </button>
-                                    </div>
-                                </form>
-                                <form class="card p-2">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Calificacion">
-                                        <button type="submit" class="btn btn-primary"> Consulta de Profesionales  </button>
-                                    </div>
-                                </form>
-                            </div>                                   
-                                
-                    </div> 
-
-                </div>
-                    
-                <div style="display: flex; gap: 10px;justify-content: center;">
-                    <a th:href="@{/usuario/modificarUsuario/{dni}(dni=${session.usuariosession.dni})}" class="btn btn-primary my-2 botonVolver botones" type="button">Modificar Usuario</a>
-                    <a th:href="@{/usuario/modificarUsuario/{dni}(dni=${session.usuariosession.dni})}" class="btn btn-danger my-2 botonVolver botones" type="button">Eliminar Usuario</a>
-                </div>
-                                    
+    <center>
+        <section class="paneladm">
+          <h1 class="visually-hidden">Panel Administrativo</h1>
+        
+          <div class="px-4 py-5 my-5 text-center">
+            <!-- <img class="d-block mx-auto mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+            <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'PACIENTE')}">
+              <img  th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}"  id="rotate-scale-up-vertical" alt="mdo" width="170" height="170" class="rounded-circle">
+            </div>
+        
+        
+         <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'ADMIN')}">
+            <img   th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}" id="rotate-scale-up-vertical" alt="mdo" width="170" height="170" class="rounded-circle"> 
+         </div>
+        
+            <h1 class="display-5 fw-bold text-body-emphasis" th:text="'Bienvenido ' + ${session.usuariosession.nombre}"></h1>
+            <div class="col-lg-6 mx-auto">
+              <p class="lead mb-4 textoadm" >¡Bienvenido al Panel Administrativo!
+             Aquí, en el sidebar izquierdo, tienes acceso a todas las acciones clave de la página: crear, modificar, listar y explorar. Nuestra interfaz es fácil de usar,
+             y nuestro equipo de soporte está listo para ayudarte en cualquier momento. ¡Disfruta de todas las herramientas que necesitas para una experiencia excepcional!
+                </p>
+              <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+               <a th:href="@{/usuario/modificarUsuario/{dni}(dni=${session.usuariosession.dni})}"> <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Editar Perfil</button></a>
+                <a href=""><button type="button" class="btn btn-success btn-lg px-4">Mis Turnos</button></a>
+              </div>
+            </div>
+          </div>
         </section>
+        </center>
 
         <section class=" text-center container">
             <div class="row mt-3">
                 <div class="divVolver">
-                    <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+                    <a th:href="@{/}" class="btn btn-warning my-2 botonVolver botones">Volver</a>
                 </div>
             </div>
         </section>
@@ -163,9 +81,10 @@
 <br>
 </main>
 
-<footer>
-<footer th:replace="/fragments/footer :: footer" ></footer> 
-</footer>
+
+
+<!-- <footer th:replace="/fragments/footer :: footer" ></footer>  -->
+
 </body>
 
 </html>

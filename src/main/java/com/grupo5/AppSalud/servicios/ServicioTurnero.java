@@ -4,12 +4,17 @@
  */
 package com.grupo5.AppSalud.servicios;
 
+import com.grupo5.AppSalud.entities.FichaPaciente;
 import com.grupo5.AppSalud.entities.Profesional;
 import com.grupo5.AppSalud.entities.Turnero;
 import com.grupo5.AppSalud.entities.Usuario;
+import com.grupo5.AppSalud.enumeraciones.ObrasSociales;
+import com.grupo5.AppSalud.exepciones.MiException;
+import com.grupo5.AppSalud.repository.FichaPacienteRepository;
 import com.grupo5.AppSalud.repository.ProfesionalRepository;
 import com.grupo5.AppSalud.repository.TurneroRepository;
 import com.grupo5.AppSalud.repository.UsuarioRepository;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -31,7 +36,13 @@ public class ServicioTurnero { //No le veo la necesidad de generar una validaci√
     private ProfesionalRepository profesionalRepository;
 
     @Autowired
+    private ServicioFichaPaciente fichaServi;
+    
+    @Autowired
     private UsuarioRepository usuarioRepository;
+    
+    @Autowired
+    private FichaPacienteRepository fichaRepository;
 
     @Autowired
     private HttpSession httpSession;
@@ -95,7 +106,7 @@ public class ServicioTurnero { //No le veo la necesidad de generar una validaci√
         }
     }
 
-    public void asignarTurno(String idTurno, String notasTurnero, String dni) {
+    public void asignarTurno(String idTurno, String notasTurnero, String dni) throws MiException, ParseException {
         // Buscar el turno por su ID
         Turnero turnero = turneroRepositorio.buscarPorId(idTurno);
 
@@ -110,9 +121,9 @@ public class ServicioTurnero { //No le veo la necesidad de generar una validaci√
                     turnero.setUsuario(usuario);
                     turnero.setNotasTurnero(notasTurnero);
                     turnero.setReserva(false); // Marcar el turno como no disponible
-
                     // Guardar el turno actualizado en la base de datos
                     turneroRepositorio.save(turnero);
+                    fichaServi.registrar(null, turnero.getFecha(), turnero.getUsuario().getNombreObraSocial(), turnero.getUsuario(), notasTurnero, turnero.getProfesional().getMatricula(), turnero.getUsuario().getDni(), idTurno);
                 } else {
                     // Manejar el caso en que no se encuentre el usuario
                     System.out.println("No se encuentra el usuario.");

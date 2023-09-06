@@ -1,0 +1,27 @@
+<!-- PERFIL PROFESIONAL LOGUEADO -->
+<div id="b1" class="b1">
+    <img class="d-block mx-auto mb-4" src="/img/icono-adm.png" alt="" width="100" height="100">
+    <h2>Mi perfil</h2>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <img src="/img/docs/MariaElenaSoubarois.jpg" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-4">
+                <h5 class="card-title" th:text="${profesional.nombre + ' ' + profesional.apellido} "></h5> 
+                <p class="clasificacion">★★★★★
+                </p>
+                <p class="card-text" th:text="${profesional.especialidad}"></p> 
+                <p class="card-text">Matrícula: <small class="text-muted" th:text="${profesional.matricula}"></small></p>
+                <!-- <p class="card-text">Dirección: <small class="text-muted" th:text="${profesional.unicacion}"></small></p>
+                <p class="card-text">Teléfono: <small class="text-muted" th:text="${profesional.telefono}"></small></p>
+                <p class="card-text">Atención remota: <small class="text-muted" th:text="${profesional.atencionremota}"></small></p>
+                <p class="card-text">Tarifa: $  <small class="text-muted" th:text="${profesional.tarifa}"></small></p> -->
+            </div>
+        </div> 
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+    <!--Aca Linkeamos Boostrap para Incluir algunos recursos! -->
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <!--Aca Linkeamos Font Awsome para Incluir algunos recursos! -->
+
+    <link rel="icon" href="/img/icono.png" type="image/svg+xml"> <!--  <-icono pestaña -->
+
+    <link rel="stylesheet" href="/dashboard.css">
+
+    <title>WebApp Salud</title>
+
+</head>
+
+<body>
+
+<!-------NAV BAR---------------------------------- -->
+<nav th:replace="fragments/navbar :: nav"></nav>
+<!-- ---------------------------------------------- -->
+<br>
+<br>
+<br>
+<body>
+
+    <section class="container1">
+        <div class="hed">
+            <img width="60px" src="/img/adduser.png" alt="icono add">
+            <h4 class="mb-3 ">Modificar Datos de Usuario</h4>
+        </div>
+
+
+        </div>
+        <div th:replace="fragments/error :: mensajeError"></div>
+        <form class="row g-3" th:action="@{/usuario/modificadoUsuario/__${usuario.dni}__}" method="POST"
+              enctype="multipart/form-data">
+            <div class="row g-3">
+                <div class="col-sm-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" th:value="${usuario.nombre}" class="form-control"  name="nombre" id="nombre" placeholder="Nombre" required="">
+                    <div class="invalid-feedback">
+                        Valid first name is required.
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" th:value="${usuario.apellido}" class="form-control" name="apellido" id="apellido"
+                           placeholder="Apellido" required="">
+                    <div class="invalid-feedback">
+                        Valid last name is required.
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label for="file" class="form-label">Subir imagen</label>
+                    <input type="file" class="form-control" name="archivo" id="archivo">
+                </div>
+
+                <div class="col-6">
+                    <label for="dni" class="form-label">DNI</label>
+                    <input type="text" class="form-control" name="dni" id="dni" placeholder="DNI" th:value="${dni}" required="">
+                </div>
+                
+                <div class="col-sm-6">
+                    <label for="telefono" class="form-label">Telefono</label>
+                    <input type="text"  th:value="${usuario.telefono}" class="form-control" name="telefono" id="telefono" placeholder="telefono"
+                           required="">
+                    <div class="invalid-feedback">
+                        Valid last name is required.
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <label for="eMail" class="form-label">Email</label>
+                    <input type="email"  th:value="${usuario.eMail}" class="form-control" name="eMail" id="eMail" placeholder="you@example.com"
+                           required="@">
+                    <div class="invalid-feedback">
+                        Please enter a valid email address for shipping updates.
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-6"type="hidden">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="" required="">
+                    <div class="invalid-feedback">
+                        Valid password is required
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <label for="password"   class="form-label">Confirmar Contraseña</label>
+                    <input type="password" class="form-control" name="password2" id="password2" placeholder="" required="">
+                    <div class="invalid-feedback">
+                        Please enter the same password.
+                    </div>
+                </div>
+
+                
+                <div class="col-6">
+                    <label class="form-label">Tiene Obra social ?</label>
+                    <br>
+                    <div class="form-check form-check-inline">
+                             <input type="radio" class="form-check-input" name="obraSocialBoleano" id="obraSocialSi" value="true" >
+                             <label class="form-check-label" for="obraSocialSi">Si</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                       
+                             <input type="radio" class="form-check-input" name="obraSocialBoleano" id="obraSocialNo" value="false" >
+                             <label class="form-check-label" for="obraSocialNo">No</label>
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-6" id="obraSocialContainer"  style="display: none;">
+                    <label for="obrasocial" class="form-label" id="obraSocialContainer">Obra Social</label>
+                    <select name="nombreObraSocial" class="form-select">
+                        <option th:if="${usuario != null}" th:each="obraSocial : ${T(com.grupo5.AppSalud.enumeraciones.ObrasSociales).values()}"
+                        th:value="${obraSocial}" th:text="${obraSocial}" th:selected="${obraSocial == usuario.getNombreObraSocial}">
+                        </option>
+                    </select>
+                </div>
+
+
+                        <script>
+                            // Obtiene referencias a los elementos HTML que necesitas
+                            var obraSocialContainer = document.getElementById("obraSocialContainer");
+                            var tieneObraSocialSi = document.getElementById("obraSocialSi");
+                            var tieneObraSocialNo = document.getElementById("obraSocialNo");
+                        
+                            // Agrega un evento change al radio button "Tiene Obra social"
+                            tieneObraSocialSi.addEventListener("change", function () {
+                                // Si se selecciona "Si", muestra el campo de selección de Obra Social, de lo contrario, ocúltalo
+                                // obraSocialContainer.style.display = tieneObraSocialSi.checked ? "block" : "none";
+                              if('obraSocialSi'==true){
+                                  obraSocialContainer.display='block'
+                                 }else {
+                                    obraSocialContainer.display='none'
+                                                  }
+                                                });
+                        
+                        </script>
+
+                <div class="col-md-5">
+                    <!-- <label>
+                  Valor de consulta: <input type="number" name="valorConsulta" class="form-control" style="margin-top: 10px;">
+              </label> -->
+                </div>
+                <br>
+                <div class="col-md-5" style="margin-left: 70px;">
+                    <!-- <label for="ObraSocial" class="form-label">¿Recibe obra social?</label>
+              <select name="obraSocial" class="form-select" id="ObraSocial" required="">
+                  <option value="">Seleccione</option>
+                  <option value="true" id="obraSocialSi">Si</option>
+                  <option value="false" id="obraSocialNo">No</option>
+              </select> -->
+
+                </div>
+
+                <div class="col-md-5">
+                    <!-- <label for="Espacio" class="form-label">Modalidad de atención </label>
+              <select name="atencion" class="form-select" id="espacio" required="">
+                  <option value="">Seleccione</option>
+                  <option value="Telemedicina" id="telemedicina">Telemedicina</option>
+                  <option value="Presencial" id="presencial">Presencial</option> -->
+                    <!-- </select> -->
+                    <!--<input type="text" class="form-control" name="direccion" id="Direccion" placeholder="ejemplo.com/ Calle ejemplo 111" required="@">-->
+                    <div class="invalid-feedback">
+                        Please enter a valid email address for shipping updates.
+                    </div>
+                </div>
+                <div class="col-md-5" id="input-direccion" style="margin-left: 70px; margin-top:22px">
+
+                </div>
+
+            </div>
+            <button class="w-96 btn btn-dark btn-lg miboton" type="submit" value="registrar"
+                    style="margin:15px">Modificar</button>
+        </form>
+        <br><br>
+
+        <section class=" text-center container">
+            <div class="row mt-3">
+                <div class="divVolver">
+                    <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+                </div>
+            </div>
+        </section>
+        <br><br><br>
+</section>
+        <!-----------------------------SCRIPTS------------------------------------------------ -->
+           
+        <script src="https://kit.fontawesome.com/9925dbe6e4.js" crossorigin="anonymous"></script>
+           <!-- ------------------------------------------------------------------------------------>
+</body>
+
+</html>

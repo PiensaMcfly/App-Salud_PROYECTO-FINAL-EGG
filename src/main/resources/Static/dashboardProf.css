@@ -1,0 +1,30 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    
+    }
+    
+    body{
+     background-image: url(/img/fondodash2.jpg);
+     background-repeat: no-repeat;
+     background-size: 100%;
+     background-attachment: fixed;
+     padding-bottom: 40px;
+    
+    }
+
+    .container1{
+      background-color: aliceblue;
+      opacity: .8;
+      padding-left: 25px;
+      padding-bottom: 20px;
+
+    }
+    
+    .bienvenida{
+        width: 50%;
+    }
+    
+    .btn {
+        margin-left: 30px;
+    }

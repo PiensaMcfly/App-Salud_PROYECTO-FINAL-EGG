@@ -1,0 +1,111 @@
+body {
+  background-image: url(img/fondonuevo6.jpg);
+ 
+  margin-top: 100px;
+
+  background-size: cover;
+}
+
+h5 {
+  text-align: center;
+}
+
+
+/* -------------------------------IMAGEN INVITACION JUMBOTRON-------------------------------- */
+.invitacion{
+  background-color: aliceblue;
+  opacity: .9;
+}
+
+.imagentron{
+  border-radius: 30px;
+  opacity: none;
+}
+/* ---------------------------------------------------------------------------------------- */
+
+
+/*   FORMULARIO USARIO - PROF   */
+
+.formulario2{
+padding-top: 50px;
+width: 65%;
+background-color: aliceblue;
+border-radius: 20px;
+padding: 25px;
+text-align:left;
+justify-content: center;
+}
+
+.botonculiado{
+width: 97%;
+}
+
+.botonculiado2{
+background-color: #45a049;
+}
+
+.botonculiado2:hover{
+
+  background-color: #4caf58;
+}
+
+.botonhdp{
+  width: 100%;
+}
+
+
+#matricula{
+  display: flex;
+}
+
+/*  ---------------------------- CHECK LIST DE REGISTRO USUARIO --------------------------------------   */
+.inline-list{                                 
+list-style-type: none;
+display: flex;
+gap: 6px;
+margin: 15px;
+}
+/*  -----------------------------------------------------------------------------------------------------*/
+
+/*   COMPARTIDO EN AMBOS FORMULARIOS   */
+.formulario1 {
+  background-color: aliceblue;
+  opacity: 0.8;
+  padding: 20px;
+  border-radius: 20px;
+  
+}
+
+.form-div {
+  background-color: #45a049 #4caf50;
+}
+
+.Textbienvenida1 {
+  background-color: aliceblue;
+  width: 30%;
+
+  justify-content: center;
+  border-radius: 30px;
+  margin: 20px;
+  opacity: .9;
+}
+
+.Textbienvenida1:hover {
+    transition-duration: .5;
+  background-color: rgb(210, 222, 232);
+}
+
+/*  -----------------------------------------------------------------------------------------------------*/
+
+/*   turnero   */
+.calendario{
+  justify-content: center;
+
+
+
+}
+.registroVolver{
+justify-content: center;   
+text-align: center
+
+}

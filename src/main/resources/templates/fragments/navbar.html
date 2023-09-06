@@ -1,0 +1,101 @@
+<nav>
+  <!-- -------------------------------------FRAGMENT NAV BAR--------------------------------------- -->
+  <header class="p-3 text-bg-dark fixed-top"> <!-- Agregué fixed-top para fijar el menu superior -->
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <img src="/img/icono.png" alt="icono nav" height="40">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+            <use xlink:href="#bootstrap" />
+          </svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Horarios</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Profesionales</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">About Us</a></li>
+
+          <li th:if="${session.usuariosession == null}"><a href="/registrarprofesional"
+              class="nav-link px-2 text-white">Trabaja con Nosotros</a></li>
+        </ul>
+
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+          <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Buscar.."
+            aria-label="Search">
+        </form>
+
+        <div th:if="${session.usuariosession == null}">
+          <div class="text-end">
+            <a href="/login"> <button type="button" class="btn btn-outline-light me-2">Iniciar Sesion</button></a>
+            <a href="/registrar"> <button type="button" class="btn btn-primary"> Registrarme</button></a>
+          </div>
+        </div>
+
+
+        <!-- -------------------------- BOTON DROP DE PERFIL------------------------------------- -->
+
+        <div th:if="${session.usuariosession != null}">
+          <div class="flex-shrink-0 dropdown navDROP">
+            <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+            data-bs-toggle="dropdown" aria-expanded="false">
+
+                    <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'PACIENTE')}">
+                         <img  th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}" alt="mdo" width="33" height="33" class="rounded-circle">
+                    </div>
+
+                    <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'MEDICO')}">
+                      <img   th:src="@{/imagen/perfil1/__${session.usuariosession.matricula}__}" alt="mdo" width="33" height="33" class="rounded-circle"> 
+                    </div>
+
+                    <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'ADMIN')}">
+                       <img   th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}" alt="mdo" width="33" height="33" class="rounded-circle"> 
+                    </div>
+             </a> 
+             
+             
+
+
+<!-- Debug output -->
+<!-- <p>Rol: <span th:text="${session.usuariosession.rol}"></span></p>
+<p>Es paciente: <span th:text="${session.usuariosession.rol.equals('PACIENTE')}"></span></p>
+<p>Es médico: <span th:text="${session.usuariosession.rol == 'MEDICO'}"></span></p>
+<p>Es paciente: <span th:text="${#strings.equals(#strings.trim(session.usuariosession.rol), 'PACIENTE')}"></span></p>
+<p>Es médico: <span th:text="${#strings.equals(#strings.trim(session.usuariosession.rol), 'MEDICO')}"></span></p>    NOS CONVIERTE EL ENUM EN STRING-->
+             <!-- ------------------------------------- -->
+
+
+             
+             <ul class="dropdown-menu text-small shadow">
+              <!-- <li><a class="dropdown-item" href="#">New project...</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li> -->
+                <li sec:Authorize="hasAnyRole ('PACIENTE','ADMIN')"><a class="dropdown-item" href="/usuario/dashboard">Perfil </a></li>
+                <li sec:Authorize="hasAnyRole ('MEDICO','ADMIN')"><a class="dropdown-item" href="/profesional/dashboard">Perfil Profesional.</a></li>
+                <li sec:Authorize="hasRole ('ADMIN')"><a class="dropdown-item" href="/admin/dashboard">Perfil ADMIN</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/logout">Cerrar Sesión</a></li>
+               
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ---------------------------------------------------------------------------------------------- -->
+
+
+      
+  </header>
+
+
+  <!-- ----------------------------------------------------------------------------------------------SCRIPTS BOOSTRAP------------------------------------------------------------------------------ -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+    crossorigin="anonymous"></script>
+  <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+
+</nav>

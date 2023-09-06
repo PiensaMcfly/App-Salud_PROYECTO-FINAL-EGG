@@ -1,0 +1,6 @@
+<div th:fragment="horarios">
+    <select id="select2" class="form-select" th:field="*{selectedOption}">
+        <option th:each="horaturnoProf : ${horasdispo}" th:text="${horaturnoProf}">
+        </option>
+    </select>
+</div>

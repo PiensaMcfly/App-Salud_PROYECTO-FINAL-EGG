@@ -1,0 +1,99 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background-image: url(/img/fondodash2.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-attachment: fixed;
+  padding-bottom: 100px;
+}
+
+h3 {
+  align-content: center;
+  color: aliceblue;
+  text-shadow: 10px;
+  text-align: center;
+}
+
+a {
+  color: black;
+}
+
+/* contenedor de todo Side - form - tabla  */
+.main-container {
+  flex-direction: row;
+  align-items: flex-start;
+  padding-left: 260px; /* Ancho del sidebar más margen */
+}
+
+/* Contenedor del Formulario  */
+.container1 {
+  background-color: aliceblue;
+  opacity: 0.8;
+  padding-left: 25px;
+  padding-bottom: 20px;
+  padding-top: 60px;
+  width: 80%;
+  text-align: left;
+  border-radius: 10px;
+}
+/* Contenedor de los dashboard  */
+.containerDash {
+  background-color: rgb(157, 187, 213);
+  opacity: 0.8;
+  padding-left: 10px;
+  padding-bottom: 20px;
+  padding-top: 60px;
+  width: 95%;
+  text-align: left;
+  border-radius: 10px;
+}
+
+.miboton {
+  width: 96%;
+}
+
+.hed {
+  display: flex;
+  gap: 45px;
+  align-items: end;
+}
+
+.sidebar1 {
+  background-color: #c5d7e9;
+  color: #fff;
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 300px;
+}
+
+/* Animacion Del Formulario */
+#scale-up-top-right {
+  animation: scale-up-top-right 0.4s;
+}
+@keyframes scale-up-top-right {
+  0% {
+    transform: scale(0.5);
+    transform-origin: top right;
+  }
+  100% {
+    transform: scale(1);
+    transform-origin: top right;
+  }
+}
+/* ----------------------------------------------------------------- */
+
+.listaADM1 {
+  background-color: aliceblue;
+  opacity: 0.8;
+  margin-top: 45px;
+  width: 80%;
+  align-items: center;
+  border-radius: 10px;
+}

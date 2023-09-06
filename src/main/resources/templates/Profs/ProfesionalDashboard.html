@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <html xmlns:th="http://www.thymeleaf.org xmlns:sec=http://www.thymeleaf.org/extras/spring-security">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link  
+                href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+                rel="stylesheet"
+                integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+                crossorigin="anonymous"/> <!--Aca Linkeamos Boostrap para Incluir algunos recursos! -->
+
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
+                  integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" 
+                  crossorigin="anonymous" /><!--Aca Linkeamos Font Awsome para Incluir algunos recursos! -->
+
+            <link rel="icon" href="/img/icono.png" type="image/svg+xml"> <!--  <-icono pestaña -->
+
+            <link rel="stylesheet" href="/dashboardProf.css">
+
+            <title>WebApp Salud</title>
+
+
+        <body>
+            <header>
+                <!-- ---------------------------------------------NAV BAR----------------------------------------------------- -->
+                <nav th:replace="fragments/navbar :: nav"></nav>
+                <!-- ---------------------------------------------------------------------------------------------------------- -->
+            </header> 
+            <br>
+            <br>
+            <div class="container-fluid">       
+                <div class="row">
+                    <!-- sideBar lateral del Profesional  -->      
+
+                    <div th:replace="Profs/fragments/sideBar :: sidebar" ></div>  
+
+                    <!-- Fin del sidevBar lateral del profesional -->   
+
+                    <!-- Area de despliegue de info --> 
+                    
+                    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                        <div class="container">
+
+                            <section class="container1">
+                                <div class="py-5 text-center" >
+                                    <!-- Area de thymeleafs selectivos según menú --> 
+
+                                    <div id="contenido1" style="display: block;">
+                                        <div id="fragmentContainer" th:replace="Profs/fragments/bnv :: bnv"> </div>
+                                    </div>
+                                    <div id="contenido2" style="display: none;">
+                                        <div id="fragmentContainer" th:replace="Profs/fragments/perfil :: perfil"> </div>
+                                    </div>
+                                    <div id="contenido3" style="display: none;">
+                                        <p>Contenido del botón 3</p>
+                                    </div>
+                                    <!-- Aquí hay que agregar el resto de los fragments de la admin de Profesional -->
+                                    
+                                    <!-- Fin Area de thymeleafs selectivos según menú --> 
+                                </div>
+                            </section>
+                        </div>
+                    </main>
+                    
+                    <!-- Fin Area de despliegue de info --> 
+                </div>
+            </div>
+                        
+            <!-- Area Scripts - cuando este todo funcional probaré sacarlo a carpeta js --> 
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const boton1 = document.getElementById('boton1');
+                    const boton2 = document.getElementById('boton2');
+                    const boton3 = document.getElementById('boton3');
+
+                    const contenido1 = document.getElementById('contenido1');
+                    const contenido2 = document.getElementById('contenido2');
+                    const contenido3 = document.getElementById('contenido3');
+
+                    boton1.addEventListener('click', function () {
+                        contenido1.style.display = 'block';
+                        contenido2.style.display = 'none';
+                        contenido3.style.display = 'none';
+                    });
+
+                    boton2.addEventListener('click', function () {
+                        contenido1.style.display = 'none';
+                        contenido2.style.display = 'block';
+                        contenido3.style.display = 'none';
+                    });
+
+                    boton3.addEventListener('click', function () {
+                        contenido1.style.display = 'none';
+                        contenido2.style.display = 'none';
+                        contenido3.style.display = 'block';
+                    });
+                });
+            </script>
+
+            <!-- -------------------------------------------------FOOTER---------------------------------------------------------------------------->
+            <footer th:replace="fragments/footer :: footer" ></footer>
+        </body>
+    </html>

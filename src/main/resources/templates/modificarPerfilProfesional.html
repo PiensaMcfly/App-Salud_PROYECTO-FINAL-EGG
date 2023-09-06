@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+    <html xmlns:th="http://www.thymeleaf.org " xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+       <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+                  integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+            <!--Aca Linkeamos Boostrap para Incluir algunos recursos! -->
+
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+                  integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+            <!--Aca Linkeamos Font Awsome para Incluir algunos recursos! -->
+
+            <link rel="icon" href="/img/icono.png" type="image/svg+xml"> <!--  <-icono pestaña -->
+
+            <link rel="stylesheet" href="/dashboard.css">
+
+            <title>WebApp Salud</title>
+        </head>
+
+<!-------NAV BAR---------------------------------- -->
+<nav th:replace="fragments/navbar :: nav"></nav>
+<!-- ---------------------------------------------- -->
+<br>
+<br>
+<br>
+
+    <body>
+
+            <section class="container1">
+            <div class="hed">
+                <img width="60px" src="/img/adduser.png" alt="icono add">
+                <h4 class="mb-3 ">Modificar Perfil de Usuario Médico</h4>
+            </div>
+
+
+        </div>
+        <div th:replace="fragments/error :: mensajeError"></div>
+        <form class="row g-3" th:action="@{/profesional/modificadoPerfilProfesional/__${profesional.matricula}__}" method="POST"
+              enctype="multipart/form-data">
+            <div class="row g-3">
+                <div class="col-sm-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" th:value="${profesional.nombre}" class="form-control"  name="nombre" id="nombre" placeholder="Nombre" required="">
+                    <div class="invalid-feedback">
+                        Valid first name is required.
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" th:value="${profesional.apellido}" class="form-control" name="apellido" id="apellido"
+                           placeholder="Apellido" required="">
+                    <div class="invalid-feedback">
+                        Valid last name is required.
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label for="file" class="form-label">Subir imagen</label>
+                    <input type="file" class="form-control" name="archivo" id="archivo">
+                </div>
+
+                <div class="col-12">
+                    <label for="eMail" class="form-label">Email</label>
+                    <input type="email"  th:value="${profesional.eMail}" class="form-control" name="eMail" id="eMail" placeholder="you@example.com"
+                           required="@">
+                    <div class="invalid-feedback">
+                        Please enter a valid email address for shipping updates.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="matricula" class="form-label">Matricula</label>
+                    <input type="text" th:value="${profesional.matricula}"  class="form-control" name="matricula"
+                           id="matricula">
+                </div>
+
+                <div class="col-sm-6">
+                    <label for="telefono" class="form-label">Telefono</label>
+                    <input type="text"  th:value="${profesional.telefono}" class="form-control" name="telefono" id="telefono" placeholder="telefono"
+                           required="">
+                    <div class="invalid-feedback">
+                        Valid last name is required.
+                    </div>
+                </div>
+
+
+                <div class="col-12"type="hidden">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="">
+                    <div class="invalid-feedback">
+                        Valid password is required
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label for="password"   class="form-label">Confirmar Contraseña</label>
+                    <input type="password" class="form-control" name="password2" id="password2" placeholder="">
+                    <div class="invalid-feedback">
+                        Please enter the same password.
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label for="nombre" class="form-label">Especialidad</label>
+                    <select name="especialidad" class="form-select">
+                        <option value="">Seleccione</option>
+                        <option value="Pediatría" th:selected="${profesional.especialidad == 'Pediatría'}">Pediatria</option>
+                        <option value="Ginecología" th:selected="${profesional.especialidad == 'Ginecología'}">Ginecologia</option>
+                        <option value="Clínica" th:selected="${profesional.especialidad == 'Clínica'}">Clínica</option>
+                        <option value="Cardiología" th:selected="${profesional.especialidad == 'Cardiología'}">Cardiologia</option>
+                    </select>
+                </div>
+
+                <div class="col-md-5">
+                    <!-- <label>
+                  Valor de consulta: <input type="number" name="valorConsulta" class="form-control" style="margin-top: 10px;">
+              </label> -->
+                </div>
+                <br>
+                <div class="col-md-5" style="margin-left: 70px;">
+                    <!-- <label for="ObraSocial" class="form-label">¿Recibe obra social?</label>
+              <select name="obraSocial" class="form-select" id="ObraSocial" required="">
+                  <option value="">Seleccione</option>
+                  <option value="true">Si</option>
+                  <option value="false">No</option>
+              </select> -->
+
+                </div>
+
+                <div class="col-md-5">
+                    <!-- <label for="Espacio" class="form-label">Modalidad de atención </label>
+              <select name="atencion" class="form-select" id="espacio" required="">
+                  <option value="">Seleccione</option>
+                  <option value="Telemedicina" id="telemedicina">Telemedicina</option>
+                  <option value="Presencial" id="presencial">Presencial</option> -->
+                    <!-- </select> -->
+                    <!--<input type="text" class="form-control" name="direccion" id="Direccion" placeholder="ejemplo.com/ Calle ejemplo 111" required="@">-->
+                    <div class="invalid-feedback">
+                        Please enter a valid email address for shipping updates.
+                    </div>
+                </div>
+                <div class="col-md-5" id="input-direccion" style="margin-left: 70px; margin-top:22px">
+
+                </div>
+
+            </div>
+            <button class="w-96 btn btn-dark btn-lg miboton" type="submit" value="registrar"
+                    style="margin:15px">Modificar</button>
+        </form>
+</section>
+</body>
+<section class=" text-center container">
+    <div class="row mt-3">
+        <div class="divVolver">
+            <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+        </div>
+    </div>
+</section>
+        <!-- -----------contenedor main conteiner ------------------------------------------->
+        <!-- ------------------------------------------------------------------------------------------------------------>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-----------------------------SCRIPTS------------------------------------------------ -->
+           
+        <script src="https://kit.fontawesome.com/9925dbe6e4.js" crossorigin="anonymous"></script>
+           <!-- ------------------------------------------------------------------------------------>
+    </body>
+
+</html>

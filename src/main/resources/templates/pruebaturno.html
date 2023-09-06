@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <header>
+        <!-- ---------------------------------------------NAV BAR----------------------------------------------------- -->
+        <nav th:replace="fragments/navbar :: nav"></nav>
+        <!-- ---------------------------------------------------------------------------------------------------------- -->
+    </header>
+    <body>
+
+
+
+        <section th:if="${session.usuariosession != null}" >
+       
+        <div>TODO write content</div>
+        
+         <form>
+        <label for="diaSemana">Día de la Semana:</label>
+        <select id="diaSemana" name="diaSemana">
+            <option value="lunes">Lunes</option>
+            <option value="martes">Martes</option>
+            <option value="miercoles">Miércoles</option>
+            <option value="jueves">Jueves</option>
+            <option value="viernes">Viernes</option>
+            <option value="sabado">Sábado</option>
+            <option value="domingo">Domingo</option>
+        </select>
+        <br>
+        <input type="submit" value="Enviar">
+    </form>
+        
+          <form>
+        <label for="datetime">Fecha y Hora:</label>
+        <input type="datetime-local" id="datetime" name="datetime">
+        <br>
+        <input type="submit" value="Enviar">
+    </form>
+        
+        <h2>Ingrese una fecha y hora:</h2>
+    <form action="procesar" method="post">
+        <label for="fechaHora">Fecha y Hora:</label>
+        <input type="datetime-local" id="fechaHora" name="fechaHora" required>
+        <br><br>
+        <input type="submit" value="Enviar">
+    </form>
+
+</section>
+<section class=" text-center container">
+    <div class="row mt-3">
+        <div class="divVolver">
+            <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+        </div>
+    </div>
+</section>
+    </body>
+</html>

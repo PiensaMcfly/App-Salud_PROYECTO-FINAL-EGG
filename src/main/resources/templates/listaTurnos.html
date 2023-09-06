@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<html xmlns:th="http://www.thymeleaf.org " xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+  <!--Aca Linkeamos Boostrap para Incluir algunos recursos! -->
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+  <!--Aca Linkeamos Font Awsome para Incluir algunos recursos! -->
+
+  <link rel="icon" href="/img/icono.png" type="image/svg+xml"> <!--  <-icono pestaña -->
+
+  <link rel="stylesheet" href="/dashboard.css">
+  <link rel="stylesheet" href="/botonesAnimaciones.css">
+
+  <title>WebApp Salud</title>
+
+</head>
+
+<!-- -------------------NAV BAR---------------------------- -->
+<header>
+       <nav th:replace="fragments/navbar :: nav"></nav>
+</header>
+  <!-- ---------------------------------------------------- -->
+  <br>
+
+<body>
+    
+
+
+  <!-- --------------------------------------LISTA DE ADMIN CON CRUD---------------------------------------------------------------------->
+  <br>
+  <h3>LISTA DE USUARIOS Y PROFESIONALES</h3>
+  <br>
+  <center>
+    <section class="listaADM1">
+      <table class="table table-striped-columns">
+
+        <thead>
+          <tr>
+            <th scope="col">. //---DNI---// .</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">ROL</th>
+            <th scope="col">O.Social</th>
+            <th scope="col">Acciones</th>
+            <th scope="col"></th>
+            <th scope="col">AlTAS</th>
+          </tr>
+        </thead>
+
+
+
+        <tbody>
+          <tr th:each="listaUsuario : ${listaUsuario}">
+            <th scope="row" th:text="${listaUsuario.dni}">
+
+                <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'PACIENTE')}">
+                    <img  th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}" alt="mdo" width="33" height="33" class="rounded-circle">
+               </div>
+
+               <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'MEDICO')}">
+                 <img   th:src="@{/imagen/perfil1/__${session.usuariosession.matricula}__}" alt="mdo" width="33" height="33" class="rounded-circle"> 
+               </div>
+
+               <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'ADMIN')}">
+                  <img   th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}" alt="mdo" width="33" height="33" class="rounded-circle"> 
+               </div>
+
+
+
+            </th>
+            <td th:text="${listaUsuario.nombre}"></td>
+            <td th:text="${listaUsuario.apellido}"></td>
+            <td th:text="${listaUsuario.rol}"></td>
+            <td th:text="${listaUsuario.nombreObraSocial}"></td>
+            <td>
+               <a th:href="@{/admin/modificarUsuario/{dni}(dni=${listaUsuario.dni})}"><i class="fa-solid fa-user-pen" style="color: #396dc6;"></i> Modificar</a>
+            </td>
+            <td>
+              <a th:href="@{/admin/eliminar/__${listaUsuario.dni}__}"
+                onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">
+                <i class="fa-solid fa-trash" style="color: #db1432;"></i>Eliminar</a>
+            </td>
+            <td>
+              <i class="fa-solid fa-square-check fa-lg" style="color: #1fb729;"></i>---
+              <i class="fa-solid fa-triangle-exclamation fa-lg" style="color: #da1616;"></i>
+            </td>
+          </tr>
+      </table>
+  </tbody>
+
+</section>
+<a href="/admin/dashboard"> <button type="button" class="btn btn-success">Volver</button></a>
+
+</center>
+
+<!-----------------------------SCRIPTS------------------------------------------------ -->
+<script src="https://kit.fontawesome.com/9925dbe6e4.js" crossorigin="anonymous"></script>
+ <!-- ------------------------------------------------------------------------------------>
+
+</body>

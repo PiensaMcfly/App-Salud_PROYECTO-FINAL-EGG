@@ -65,7 +65,7 @@ public class ServicioUsuario {
         usuario.setNombreObraSocial(obrasocial);
         usuario.setTelefono(telefono);
         usuario.setPassword(new BCryptPasswordEncoder().encode(password));
-        usuario.setAlta(true);
+        usuario.setAlta(false);
         usuario.setRol(Rol.PACIENTE);
         Imagen imagen = servicioImagen.guardarImagen(archivo);
         usuario.setImagen(imagen);
@@ -124,29 +124,39 @@ public class ServicioUsuario {
 //        }
 //    }
 
-    @Transactional
-    public void darDeBaja(String dni) {
-        Optional<Usuario> respuesta = usuarioRepositorio.findById(dni);
-        if (respuesta.isPresent()) {
-            Usuario profesional = respuesta.get();
-            profesional.setAlta(false);
-        }
-    }
+//    @Transactional
+//    public void darDeBaja(String dni) {
+//        Optional<Usuario> respuesta = usuarioRepositorio.findById(dni);
+//        if (respuesta.isPresent()) {
+//            Usuario profesional = respuesta.get();
+//            profesional.setAlta(false);
+//            usuarioRepositorio.save(profesional);
+//        }
+//    }
 
     public Usuario getOne(String dni) {
         return usuarioRepositorio.getOne(dni);
     }
-
-    @Transactional
-    public void darDeAlta(String dni) {
-        Optional<Usuario> respuesta = usuarioRepositorio.findById(dni);
-        if (respuesta.isPresent()) {
-            Usuario profesional = respuesta.get();
-            profesional.setAlta(true);
-
-            usuarioRepositorio.save(profesional);
+    public void darDeBajaAlta(String dni){
+        Usuario usuario = getOne(dni);
+        if(usuario.getAlta() == true){
+            usuario.setAlta(false);
+        }else{
+            usuario.setAlta(true);
         }
+        usuarioRepositorio.save(usuario);
     }
+    
+//    @Transactional
+//    public void darDeAlta(String dni) {
+//        Optional<Usuario> respuesta = usuarioRepositorio.findById(dni);
+//        if (respuesta.isPresent()) {
+//            Usuario profesional = respuesta.get();
+//            profesional.setAlta(true);
+//
+//            usuarioRepositorio.save(profesional);
+//        }
+//    }
 
     @Transactional
     public void modificarUsuario(MultipartFile archivo, String dni, String nombre, String apellido, String eMail, String telefono, String password, String password2, ObrasSociales nombreObraSocial) throws MiException, ValidationException {//agrego el parametro para la imagen - gise

@@ -10,41 +10,41 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div th:each="usuario : ${usuario}">
-            <h1 th:text="${usuario.nombre}"></h1>
-            <h1 th:text="${usuario.apellido}"></h1>
-            <h1 th:text="${usuario.dni}"></h1>
-            <table border="1" width="1" cellspacing="2">
+
+        <table  border="1" width="1" cellspacing="2" >
                 <thead>
                     <tr >
                         <th scope="col" >ID TURNO</th>
                         <th scope="col" >PACIENTE</th>
-                        <th scope="col" >DNI</th>
+                        <th scope="col"> DNI</th>
                         <th scope="col" >NOSTAS DE LA VISITA</th>
                         <th scope="col" >FECHA TURNO</th>
                         <th scope="col" >OBRA SOCIAL</th>
                         <th scope="col" >ANOTACIONES FICHA</th>
                         <th scope="col" >MATRICULA </th>
-                        
+                        <th scope="col" >ESPECIALIDAD </th>
                     </tr>
                 </thead>
-                <tbody>
+            <div th:each="usuario : ${usuario}">
+                <h1 th:text="${usuario.nombre}"></h1>
+                <h1 th:text="${usuario.apellido}"></h1>
+                <h1 th:text="${usuario.dni}"></h1>  
+
+                <tbody th:each="ficha : ${fichasPaciente}">
                     <tr>
-                        <td th:text="${usuario.fichaPaciente}"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td th:text="${ficha.id}"></td>
+                        <td th:text="${usuario.apellido}"></td>
+                        <td th:text="${usuario.dni}"></td>
+                        <td th:text="${ficha.notasDeLaVisita}"></td>
+                        <td th:text="${ficha.fecha}"></td>
+                        <td th:text="${ficha.os}"></td>
+                        <td th:text="${ficha.anotacionesFicha}"></td>                
+                        <td th:text="${ficha.profesional.matricula}"></td>
+                        <td th:text="${ficha.profesional.especialidad}"></td>
                     </tr>
                 </tbody>
-            </table>
-
-            <th>
-
-            </th>
-        </div>
-
+            </div>
+        </table>
+        
     </body>
 </html>

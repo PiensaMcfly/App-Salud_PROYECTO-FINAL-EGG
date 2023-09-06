@@ -52,7 +52,8 @@ public class ServicioFichaPaciente {
         Turnero turno = turneroRepository.buscarPorId(idTurno);
         fichapaciente.setTurno(turno);
 // Conversión de String a Date para la fecha del turno  
-        fichapaciente.setFecha(turno.getFecha());
+
+        fichapaciente.setFecha(fechaTurno);
         fichapaciente.setNotasDeLaVisita("");
         fichapaciente.setOs(turno.getUsuario().getNombreObraSocial());
         fichapaciente.setAnotacionesFicha(anotacionesFicha);

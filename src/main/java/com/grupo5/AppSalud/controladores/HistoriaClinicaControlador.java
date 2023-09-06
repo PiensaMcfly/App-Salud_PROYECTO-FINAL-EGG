@@ -4,6 +4,7 @@
  */
 package com.grupo5.AppSalud.controladores;
 
+import com.grupo5.AppSalud.entities.FichaPaciente;
 import com.grupo5.AppSalud.entities.Profesional;
 import com.grupo5.AppSalud.entities.Usuario;
 import com.grupo5.AppSalud.repository.UsuarioRepository;
@@ -32,6 +33,8 @@ public class HistoriaClinicaControlador {
     public String historiaClinica(@PathVariable String id ,ModelMap modelo ){
         Usuario usuario = usuarioRepositorio.buscarPorDni(id);
         modelo.addAttribute("usuario", usuario);
+        List<FichaPaciente> fichas = usuario.getHistoriaC().getFichapaciente();
+        modelo.addAttribute("fichasPaciente", fichas);
       
         return"HistoriaClinicaLista";
     }

@@ -23,33 +23,38 @@
 
             <link rel="stylesheet" href="/registroProfesional.css" />
             <link rel="stylesheet" href="/botonesAnimaciones.css">
+            <!-- <link rel="stylesheet" href="/dashboard.css"> -->
 
             <title>WebApp Salud</title>
         </head>
 
-        <!-- ---------------------------------------------NAV BAR----------------------------------------------------- -->
+        <!-- ------------------------NAV BAR------------------------ -->
         <nav th:replace="fragments/navbar :: nav"></nav>
-        <!-- ---------------------------------------------------------------------------------------------------------- -->
+        <!-- ------------------------------------------------------- -->
 <body>
     
 
         <br />
         <br />
 
-        <!-- -----------------------------------------------------REGISTRO FORM --------------------------------------------------------   -->
+
+        
+        <!-- ------------------------------REGISTRO FORM ----------------------   -->
         <center>
             <div class="Textbienvenida1">
                 <div class="d-grid gap-2 col-6 mx-auto">
                     <h5>Registro de nuevo Usuario <i class="fa-solid fa-user-plus fa-lg" style="color: #4681e7;"></i> </h5>
-                    <!-- <h5>Ingrese sus datos y muy pronto nos pondremos en contacto con usted.</h5> -->
                 </div>
             </div>
         </center>
 
+<!-- -----------------SideBar------------ -->
+<!-- <aside th:if="${session.usuariosession != null}" class="sidebar1"> <div  th:replace="fragments/sidebar :: sidebar"></div></aside> -->
+<!-- ------------------------------------- -->
+
 <!-------------------------------------------------------------------------------------------------------------------------------------------------- -->
                       <center>
            <section class="formulario2">
-
             <div th:replace="fragments/error :: mensajeError"></div>     <!--  FRAGMENT DE CARTEL DE ERROR O EXITO-->
 
                       <form class="row g-3" th:action="@{/registroUsuario}" method="POST" enctype="multipart/form-data">
@@ -131,7 +136,8 @@
 <section class=" text-center container">
     <div class="row mt-3">
         <div class="divVolver">
-            <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+            <a th:if="${session.usuariosession == null}" th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+            <a th:if="${session.usuariosession != null}" th:href="@{/admin/dashboard}" class="btn btn-danger my-2 botonVolver botones">Cancelar</a>
         </div>
     </div>
 </section>
@@ -140,9 +146,9 @@
 
 
 
-            <!-- -------------------------------------------------FOOTER---------------------------------------------------------------------------->
+            <!-- -----------------------------FOOTER------------------------------------>
             <footer th:replace="/fragments/footerChico :: footerChico" ></footer>
-            <!-------------------------------------------------------------------------------------------------------------------------------------->
+            <!-------------------------------------------------------------------------->
 
 
               <!-- ----------------------------------------SCRIPTS------------------------------------------------ -->

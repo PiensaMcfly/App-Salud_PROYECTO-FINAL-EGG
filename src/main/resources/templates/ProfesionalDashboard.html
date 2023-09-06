@@ -15,7 +15,10 @@
               integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" 
               crossorigin="anonymous" /><!--Aca Linkeamos Font Awsome para Incluir algunos recursos! -->
         <link rel="icon" href="/img/icono.png" type="image/svg+xml"> <!--  <-icono pestaña -->
+
         <link rel="stylesheet" href="/dashProfUsu.css">
+        <link rel="stylesheet" href="/dashboard.css">
+        <link rel="stylesheet" href="/botonesAnimaciones.css">
         <title>WebApp Salud</title>
     </head>
 
@@ -39,137 +42,49 @@
 <main>
 
 
-        <div class="container">
-            <section class="containerDash">
+  <center>
+    <section class="paneladm">
+      <h1 class="visually-hidden">Panel Administrativo</h1>
+    
+      <div class="px-4 py-5 my-5 text-center">
+        
+        <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'MEDICO')}">
+          <img  th:src="@{/imagen/perfil1/__${session.usuariosession.matricula}__}"  id="rotate-scale-up-vertical" alt="mdo" width="170" height="170" class="rounded-circle">
+        </div>
+    
+    
+     <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'ADMIN')}">
+        <img   th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}" id="rotate-scale-up-vertical" alt="mdo" width="170" height="170" class="rounded-circle"> 
+     </div>
+    
+        <h1 class="display-5 fw-bold text-body-emphasis" th:text="'Bienvenido ' + ${session.usuariosession.nombre}"></h1>
+        <div class="col-lg-6 mx-auto">
+          <p class="lead mb-4 textoadm" >¡Bienvenido al Panel Administrativo!
+         Aquí, en el sidebar izquierdo, tienes acceso a todas las acciones clave de la página: crear, modificar, listar y explorar. Nuestra interfaz es fácil de usar,
+         y nuestro equipo de soporte está listo para ayudarte en cualquier momento. ¡Disfruta de todas las herramientas que necesitas para una experiencia excepcional!
+            </p>
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+           <a th:href="@{/profesional/modificarPerfilProfesional/{matricula}(matricula=${session.usuariosession.matricula})}"> <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Editar Perfil</button></a>
+            <a href=""><button type="button" class="btn btn-success btn-lg px-4">Mis Turnos</button></a>
+          </div>
+        </div>
+      </div>
+    </section>
+    </center>
 
-                <div class="py-5 text-center">
-                    <div>
-                    <div>
-                        <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'MEDICO')}">
-                            <img th:src="@{/imagen/perfil1/__${session.usuariosession.matricula}__}"  id="rotate-scale-up-vertical" alt="mdo" width="160" height="160" class="rounded-circle">
-                        </div>
-                        <h2>Dashboard Profesional</h2>
-                        <p>Administrador de Perfil de Profesional</p>
-                        <br> 
-                        <h3> Bienvenido/a  <span th:text="${session.usuariosession.nombre}">  </span>  <span th:text="${session.usuariosession.apellido}"></span></h3>
-                        <br>
-                        <br>
-                        <br>
-                    </div>
-                </div>
-            <section>
-                <div class="row ">
-                    <div class="listaDash">
-                        <a href="/turnos/profesional/registrar_turno" class="list-group-item list-group-item-action active" aria-current="true">
-                        <div class="d-flex w-90 justify-content-between" Style="color: rgb(82, 134, 212);">
-                            <h5 class="mb-1" >TURNOS</h5>
-                            <small>3 days ago</small>
-                          </div>
-                          <p class="mb-1">DISPONIBILIDAD</p>
-                          <small>Ingrese su dia y horario de atencion</small>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                          <div class="d-flex w-100 justify-content-between" Style="color: rgb(82, 134, 212);">
-                            <h5 class="mb-1" >PACIENTES</h5>
-                            <small class="text-body-secondary">3 days ago</small>
-                          </div>
-                          <p class="mb-1">DATOS DE PACIENTES </p>
-                          <small class="text-body-secondary">historia clinica,turnos.</small>
-                        </a>
-
-                        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                          <div class="d-flex w-100 justify-content-between" Style="color: rgb(82, 134, 212);">
-                            <h5 class="mb-1" >TURNOS</h5>
-                            <small class="text-body-secondary">3 days ago</small>
-                          </div>
-                          <p class="mb-1">TURNOS AGENDADOS</p>
-                          <small class="text-body-secondary">consultas</small>
-                        </a>
-
-                        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                          <div class="d-flex w-100 justify-content-between" Style="color: rgb(82, 134, 212);">
-                            <h5 class="mb-1" Style="color:aquamarine">FICHA PACIENTES</h5>
-                            <small class="text-body-secondary">3 days ago</small>
-                          </div>
-                          <p class="mb-1"></p>
-                          <small class="text-body-secondary">consultas</small>
-                        </a>
-
-                        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                          <div class="d-flex w-100 justify-content-between" Style="color: rgb(82, 134, 212);">
-                            <h5 class="mb-1" >HISTORIAS MEDICAS</h5>
-                            <small class="text-body-secondary">3 days ago</small>
-                          </div>
-                          <p class="mb-1">historias medicas de pacientes atendidos</p>
-                          <small class="text-body-secondary">consultas</small>
-                        </a>
-
-                        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                          <div class="d-flex w-100 justify-content-between" Style="color: rgb(82, 134, 212);">
-                            <h5 class="mb-1" >DATOS PERSONALES</h5>
-                            <small class="text-body-secondary">3 days ago</small>
-                          </div>
-                          <p class="mb-1">datos de usuario profesional</p>
-                          <small class="text-body-secondary">consultas</small>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                          <div class="d-flex w-100 justify-content-between" Style="color: rgb(82, 134, 212);">
-                            <h5 class="mb-1" >OBRAS SOCIALES</h5>
-                            <small class="text-body-secondary">3 days ago</small>
-                          </div>
-                          <p class="mb-1">obras sociales aceptadas en consulta,tarifas,descuentos</p>
-                          <small class="text-body-secondary">consultas</small>
-                        </a>
-                      </div>
-               <div class="col-md-6 ">
-                        <h4 class="d-flex justify-content-between align-items-center mb-3">
-
-                            <div  >
-                                <form class="card p-2"  method="post">
-                                    <div class="input-group">
-                                        <input type="text"  class="form-control" placeholder="Buscar de citas medicas">
-                                        <button type="submit" class="btn btn-primary"> Citas Medicas </button>
-                                    </div>
-                                </form>
-                                <form class="card p-2">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Buscar Turnos">
-                                        <button type="submit" class="btn btn-primary"> Consulta de Turnos  </button>
-                                    </div>
-                                </form>
-                                <form class="card p-2">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Buscar Historia Clinica">
-                                        <button type="submit" class="btn btn-primary"> Consulta de Historia Clinica  </button>
-                                    </div>
-                                </form>
-                                <form class="card p-2">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Buscar por calificacion Profesionales">
-                                        <button type="submit" class="btn btn-primary"> Consulta de Profesionales  </button>
-                                    </div>
-                                </form>
-                                <form class="card p-2">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Buscar por Obra Social">
-                                        <button type="submit" class="btn btn-primary"> Consulta de Profesionales  </button>
-                                    </div>
-                                </form>
-                                <form class="card p-2">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Calificacion">
-                                        <button type="submit" class="btn btn-primary"> Consulta de Profesionales  </button>
-                                    </div>
-                                    </form>
-                            </div>                                   
-                                
-                    </div> 
-                </div>
-            </section>                                               
+    <section class=" text-center container">
+        <div class="row mt-3">
+            <div class="divVolver">
+                <a th:href="@{/}" class="btn btn-warning my-2 botonVolver botones">Volver</a>
+            </div>
+        </div>
+    </section>
+            <!-- </section>                                               
               <div style="display: flex; gap: 10px;justify-content: center;">
                               <a th:href="@{/profesional/modificarPerfilProfesional/{matricula}(matricula=${session.usuariosession.matricula})}" class="btn btn-primary my-2 botonVolver botones" type="button">Modificar Usuario Profesional</a>
-                              <a th:href="@{/profesional/modificarPerfilProfesional/{matricula}(matricula=${session.usuariosession.matricula})}" class="btn btn-danger my-2 botonVolver botones" type="button">Eliminar Profesional</a>
-              </div>
+                              <a th:href="@{/admin/eliminado/{matricula}(matricula=${listaProfesional.matricula})}" class="btn btn-danger my-2 botonVolver botones" type="button"
+                              onclick="return confirm('¿Estás seguro de que deseas borrar Tu cuenta?')">Eliminar Cuenta</a>
+              </div> -->
                                       
                                         
                                         <!-- __${session.usuariosession.matricula}__ -->
@@ -189,17 +104,11 @@
                                           onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')"> 
                                           <i class="fa-solid fa-trash" style="color: #db1432;"></i> Eliminar</a> </td>
                                      -->
-            </section>
+            <
 
                                 <!-- -------------------------------------------------------------------------------------------------------------------------- -->
 
-                                <section class=" text-center container">
-                                    <div class="row mt-3">
-                                        <div class="divVolver">
-                                            <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
-                                        </div>
-                                    </div>
-                                </section>
+                            
                                 <br>
                                 <br>
                                 <br>

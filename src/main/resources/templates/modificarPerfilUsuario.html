@@ -17,6 +17,7 @@
     <link rel="icon" href="/img/icono.png" type="image/svg+xml"> <!--  <-icono pestaña -->
 
     <link rel="stylesheet" href="/dashboard.css">
+    <link rel="stylesheet" href="/botonesAnimaciones.css">
 
     <title>WebApp Salud</title>
 
@@ -31,8 +32,8 @@
 <br>
 <br>
 <body>
-
-    <section class="container1">
+<center>
+    <section id="scale-up-top-right" class="container1">
         <div class="hed">
             <img width="60px" src="/img/adduser.png" alt="icono add">
             <h4 class="mb-3 ">Modificar Datos de Usuario</h4>
@@ -126,7 +127,7 @@
 
 
 
-                <div class="col-6" id="obraSocialContainer"  style="display: none;">
+                <div class="col-6" id="obraSocialContainer"  style="display: block;">
                     <label for="obrasocial" class="form-label" id="obraSocialContainer">Obra Social</label>
                     <select name="nombreObraSocial" class="form-select">
                         <option th:if="${usuario != null}" th:each="obraSocial : ${T(com.grupo5.AppSalud.enumeraciones.ObrasSociales).values()}"
@@ -137,6 +138,7 @@
 
 
                         <script>
+                            
                             // Obtiene referencias a los elementos HTML que necesitas
                             var obraSocialContainer = document.getElementById("obraSocialContainer");
                             var tieneObraSocialSi = document.getElementById("obraSocialSi");
@@ -190,16 +192,18 @@
             </div>
             <button class="w-96 btn btn-dark btn-lg miboton" type="submit" value="registrar"
                     style="margin:15px">Modificar</button>
+                    <section class=" text-center container">
+                        <div class="row mt-3">
+                            <div class="divVolver">
+                                <a th:href="@{/usuario/dashboard}" class="btn btn-success my-2 botonVolver botones">Volver</a>
+                            </div>
+                        </div>
+                    </section>
+                
         </form>
         <br><br>
 
-        <section class=" text-center container">
-            <div class="row mt-3">
-                <div class="divVolver">
-                    <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
-                </div>
-            </div>
-        </section>
+    </center>
         <br><br><br>
 </section>
         <!-----------------------------SCRIPTS------------------------------------------------ -->

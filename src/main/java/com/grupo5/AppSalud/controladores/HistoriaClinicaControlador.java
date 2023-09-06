@@ -32,7 +32,7 @@ public class HistoriaClinicaControlador {
     public String historiaClinica(@PathVariable String id ,ModelMap modelo ){
         Usuario usuario = usuarioRepositorio.buscarPorDni(id);
         modelo.addAttribute("usuario", usuario);
-       
+      
         return"HistoriaClinicaLista";
     }
     

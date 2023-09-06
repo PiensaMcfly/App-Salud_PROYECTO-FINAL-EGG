@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
         <head>
             <meta charset="UTF-8">
@@ -125,8 +125,21 @@
                                     sea Rapido y efectivo
                                     Asi generando Confort y Profesionalismo! No esperes mas y Unite a la Comunidad.</p>
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                                    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Registrarme</button>
-                                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+
+                                    <div>
+                                        <a href="/registrar" > <button th:if="${session.usuariosession == null}" type="button" class="btn btn-primary btn-lg px-4 me-md-2">Registrarme</button></a>
+                                    </div>
+
+
+                                    <div th:if="${session.usuariosession != null}" >
+                                        <a th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'PACIENTE')}" href="/usuario/dashboard" class="btn btn-outline-secondary btn-lg px-4">Ir al perfil</a>
+
+                                        <a th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'MEDICO')}" href="/profesional/dashboard" class="btn btn-outline-secondary btn-lg px-4">Ir al perfil</a>
+
+                                        <a th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'ADMIN')}" href="/admin/dashboard" class="btn btn-outline-secondary btn-lg px-4">Ir al perfil</a>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>

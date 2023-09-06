@@ -32,16 +32,17 @@
 <br>
 
         <body>
-
-            <section class="container1">
+<center>
+            <section id="scale-up-top-right" class="container1">
             <div class="hed">
                 <img width="60px" src="/img/adduser.png" alt="icono add">
                 <h4 class="mb-3 ">Modificar Paciente</h4>
             </div>
 
 
-        </div>
+        
         <div th:replace="fragments/error :: mensajeError"></div>
+
         <form class="row g-3" th:action="@{/admin/modificadoUsuario/__${usuario.dni}__}" method="POST"
               enctype="multipart/form-data">
             <div class="row g-3">
@@ -191,37 +192,21 @@
             </div>
             <button class="w-96 btn btn-dark btn-lg miboton" type="submit" value="registrar"
                     style="margin:15px">Modificar</button>
-        </form>
-        <br><br>
 
-        <section class=" text-center container">
-            <div class="row mt-3">
-                <div class="divVolver">
-                    <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
-                </div>
-            </div>
-        </section>
+                    <section class=" text-center container">
+                        <div class="row mt-3">
+                            <div class="divVolver">
+                                <a th:href="@{/admin/dashboard}" class="btn btn-success my-2 botonVolver botones">Volver</a>
+                            </div>
+                        </div>
+                    </section>
+        </form>    
+    </center>
         <br><br><br>
-</section>
-        <!-- -----------contenedor main conteiner ------------------------------------------->
-        <!-- ------------------------------------------------------------------------------------------------------------>
 
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-----------------------------SCRIPTS------------------------------------------------ -->
-           
+        <!-----------------------------SCRIPTS------------------------------------------------ -->  
         <script src="https://kit.fontawesome.com/9925dbe6e4.js" crossorigin="anonymous"></script>
-           <!-- ------------------------------------------------------------------------------------>
+        <!-- ------------------------------------------------------------------------------------>
     </body>
 
 </html>

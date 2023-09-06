@@ -72,6 +72,8 @@ public class AdminControlador {
         return "listaUsuarios.html";
     }
     
+   
+    
     @GetMapping("/listaProfesionales")
     public String mostrarProfesionales(ModelMap modelo) {
 
@@ -193,5 +195,13 @@ public class AdminControlador {
 
         return "AdmDashboard.html";
     }
-
+    @PostMapping("/darAlta/{dni}")
+    public String darAlta(@PathVariable String dni) throws MiException{
+            System.out.println("DNIIIIIIIII");
+            System.out.println(dni);
+            serviUsuario.darDeBajaAlta(dni);
+      
+        
+        return"redirect:../listaUsuarios";
+    }
 }

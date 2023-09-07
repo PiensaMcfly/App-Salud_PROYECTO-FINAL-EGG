@@ -64,6 +64,9 @@
 
 
                 <center>
+
+                    
+
                     <!-- -------------Carrusel1----------- VER TRAER LA OTRA CON EL TEXTO ARRIBA -->
                     <section class="Carrusel1">
 
@@ -102,11 +105,10 @@
                         </div>
                     </section>
                 </center>
-
-
-
+               
 
                 <!-- -----------END CARRUSEL1----------- -->
+                <section class="triangle"></section>
                 <hr style="border-color:rgb(58, 63, 203);">
 
                 <!-- ==================BIENVENIDA================ -->
@@ -144,12 +146,13 @@
                             </div>
                         </div>
                     </div>
+                                                                                                     <section id="Profesionales"></section>
                 </section>
+                <br>
                 <!-- ==================END BIENVENIDA================ -->
 
                 <hr style="border-color:rgb(58, 63, 203);">
                 <!-- -------------------CARRUSEL 2 CARTAS-------------------------- -->
-
 
 
                 <br>
@@ -254,16 +257,12 @@
                         </div>
                     </div>
 
-
+                                                                                     <section id="TURNOS"></section><!-- =======LINK NAV======= -->
                 </section>
+                <!-- =================END CARTAS======== -->
 
                 <br>
-                <br>
-
-                <!-- =================END CARTAS==================== -->
-
-
-                <!-- ======= On Focus Section ======= -->
+                <!-- ======= TURNOS Section ======= -->
                 <section id="onfocus" class="onfocus">
                     <div class="container-fluid p-0" data-aos="fade-up">
 
@@ -287,14 +286,54 @@
                                         <li><i class="bi bi-check-circle"></i>Saca reserva de tu turno </li>
                                         <li><i class="bi bi-check-circle"></i>Recibira una confirmacion por email </li>
                                     </ul>
-                                    <a href="#" class="read-more align-self-start"><span>SACAR TURNO</span><i
-                                            class="bi bi-arrow-right"></i></a>
+                                    <a  onclick="confirmarRedireccion()">
+                                    <button class="button2">SACAR TURNO
+                                        <div class="star-1">
+                                          <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
+                                        </div>
+                                        <div class="star-2">
+                                          <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
+                                        </div>
+                                        <div class="star-3">
+                                          <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
+                                        </div>
+                                        <div class="star-4">
+                                          <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
+                                        </div>
+                                        <div class="star-5">
+                                          <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
+                                        </div>
+                                        <div class="star-6">
+                                          <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
+                                        </div>
+                                      </button></a>
+
+                                      <script>
+                                        function confirmarRedireccion() {
+                                            // Mostrar un cuadro de diálogo de confirmación
+                                            const confirmacion = confirm('Para sacar un turno, es necesario buscar a un profesional por especialidad. ¿Desea elegir una?');
+                                        
+                                            // Si el usuario hace clic en "Aceptar" en el cuadro de diálogo de confirmación
+                                            if (confirmacion) {
+                                                // Esperar 3 segundos y luego redirigir a la sección deseada
+                                                setTimeout(function() {
+                                                    window.location.href = "#Profesionales"; // Reemplaza "Profesionales" con el ID de la sección a la que deseas redirigir
+                                                }, 2000); // 3000 milisegundos = 3 segundos
+                                            }
+                                        }
+                                        </script>
+
+
+
+                                    
                                 </div>
                             </div>
                         </div>
 
                     </div>
                 </section><!-- End On Focus Section -->
+
+                                                                                               <section id="FAQ"></section>
 
                 <br>
                 <br>
@@ -460,7 +499,6 @@
                                     <h4>Colaboradores-Desarrolladores</h4>
                                     <ul>
                                         <li><i class="bx bx-chevron-right"></i> <a href="#">Merino Martin</a></li>
-                                        <li><i class="bx bx-chevron-right"></i> <a href="#">Maciel Mauricio</a></li>
                                         <li><i class="bx bx-chevron-right"></i> <a href="#">Christian Antognazza</a></li>
                                         <li><i class="bx bx-chevron-right"></i> <a href="#">Dardo Uriel Herrera</a></li>
                                         <li><i class="bx bx-chevron-right"></i> <a href="#">Gisela Rantucho</a></li>

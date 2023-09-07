@@ -96,6 +96,15 @@ public class TurneroControlador {
 
         return "turnoRegistrado.html";
     }
+    
+        @PreAuthorize("hasAnyRole('ROLE_MEDICO')")
+    @GetMapping("/profesional/listar_turnos")
+    public String listarTurnoProfesional(ModelMap model) {
+        String matricula = obtenerMatriculaProfesionalDeSesion();
+        List<Turnero> listaTurnos = serviTurnero.listaTurnosPorMatricula(matricula);
+        model.addAttribute("listaTurnos", listaTurnos);
+        return "listaTurnos.html";
+    }
 
     private String obtenerDniUsuarioEnSesion() {
         Usuario usuarioEnSesion = (Usuario) session.getAttribute("usuariosession");

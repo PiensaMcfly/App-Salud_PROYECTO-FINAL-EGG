@@ -40,6 +40,9 @@ public interface TurneroRepository extends JpaRepository<Turnero, String> {
 
     @Query("SELECT t.id, t.fecha, t.horario FROM Turnero t WHERE t.Reserva = '1' AND t.profesional.matricula = :matricula ORDER BY t.fecha ASC")
     List<Object[]> fechasHorariosConId(@Param("matricula") String matricula);
+    
+    @Query("SELECT t FROM Turnero t WHERE t.fecha = :fecha AND t.horario = :horario AND t.profesional.matricula = :matricula")
+    public Turnero validarTurnoExiste(@Param("matricula") String matricula,@Param("fecha") String fecha,@Param("horario") String horario);
 
     // @Query("SELECT t.fecha, t.horario, t.usuario.nombre, t.usuario.dni FROM Turnero t WHERE t.reserva = false AND t.profesional.matricula = :matricula")
     //List<String> listaTurnosAsignadosProf(@Param("matricula") String matricula); //Query para creación de Ficha Paciente

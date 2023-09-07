@@ -4,99 +4,130 @@
 
   <div id="scale-up-top-right" class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 300px;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-      <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+      <svg class="bi pe-none me-2" width="40" height="32">
+        <use xlink:href="#bootstrap" />
+      </svg>
       <span class="fs-4">Menú</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a href="/" class="nav-link active" aria-current="page">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#home" />
+          </svg>
           Home
         </a>
       </li>
       <li sec:Authorize="hasAnyRole('ADMIN')">
         <a href="/admin/dashboard" class="nav-link link-body-emphasis">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#speedometer2" />
+          </svg>
           Dashboard
         </a>
       </li>
       <li sec:Authorize="hasAnyRole('PACIENTE','ADMIN')">
         <a href="/usuario/dashboard" class="nav-link link-body-emphasis">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#speedometer2" />
+          </svg>
           Perfil
         </a>
       </li>
       <li sec:Authorize="hasAnyRole('MEDICO','ADMIN')">
         <a href="/profesional/dashboard" class="nav-link link-body-emphasis">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#speedometer2" />
+          </svg>
           Perfil Profesional
         </a>
       </li>
       <li sec:Authorize="hasAnyRole ('ADMIN')">
         <a href="/admin/registrarprofesional" class="nav-link link-body-emphasis">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#speedometer2" />
+          </svg>
           Crear Medico
         </a>
       </li>
       <li sec:Authorize="hasAnyRole ('ADMIN')">
         <a href="/admin/registrarUsuario" class="nav-link link-body-emphasis">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#speedometer2" />
+          </svg>
           Crear Paciente
         </a>
       </li>
       <li sec:Authorize="hasAnyRole ('ADMIN')">
         <a href="/admin/listaUsuarios" class="nav-link link-body-emphasis">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#table" />
+          </svg>
           Lista Usuarios
         </a>
       </li>
       <li sec:Authorize="hasAnyRole ('PACIENTE','ADMIN')">
         <a href="/admin/listaProfesionales" class="nav-link link-body-emphasis">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#grid" />
+          </svg>
           Lista Profesionales
         </a>
       </li>
       <li>
-        <a href="" class="nav-link link-body-emphasis">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+        <a href="/turnos/profesional/listar_turnos" class="nav-link link-body-emphasis">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#people-circle" />
+          </svg>
           Turnos
         </a>
       </li>
       <li>
         <a href="#" class="nav-link link-body-emphasis">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#people-circle" />
+          </svg>
           Modificar Horarios
         </a>
       </li>
       <li>
         <a href="#" class="nav-link link-body-emphasis">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#people-circle" />
+          </svg>
           Turnos Disponibles
         </a>
       </li>
       <li>
         <a href="#" class="nav-link link-body-emphasis">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#people-circle" />
+          </svg>
           Pedir Turno
         </a>
       </li>
       <li>
         <a href="#" class="nav-link link-body-emphasis">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#people-circle" />
+          </svg>
           Crear Turnos
         </a>
       </li>
       <li>
         <a href="#" class="nav-link link-body-emphasis">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#people-circle" />
+          </svg>
           Otra Opcion
         </a>
       </li>
     </ul>
     <hr>
     <div class="dropdown">
-      <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+        data-bs-toggle="dropdown" aria-expanded="false">
         <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
         <strong>mdo</strong>
       </a>

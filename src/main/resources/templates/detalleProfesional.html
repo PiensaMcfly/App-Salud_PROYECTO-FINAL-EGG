@@ -145,8 +145,13 @@
 
                                     <input type="hidden" id="idTurnoHidden" name="idTurnoHidden" />
                                     <input type="hidden" name="dniUsuario" value="${sessionScope.usuariosession.dni}">
-                                  
-                                    <button th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'PACIENTE')}" type="submit" class="btn btn-outline-primary">Solicitar Turno</button>
+
+
+                                    <!--Esto está de prueba para corroborar que persiste en el mismo turno-->
+
+
+
+                                    <button type="submit" class="btn btn-outline-primary">Solicitar Turno</button>
 
                                 </form>
 

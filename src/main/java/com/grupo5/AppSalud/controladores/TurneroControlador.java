@@ -15,6 +15,7 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+import javax.xml.bind.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -50,13 +51,14 @@ public class TurneroControlador {
 
     @PreAuthorize("hasAnyRole('ROLE_MEDICO')")
     @PostMapping("/profesional/turno_registrado")
-    public String registrarTurno(@RequestParam String fecha, @RequestParam String hora) {
+    public String registrarTurno(@RequestParam String fecha, @RequestParam String hora, ModelMap modelo)throws ValidationException {
         try {
             String matriculaProfesional = obtenerMatriculaProfesionalDeSesion();
             serviTurnero.registrar(hora, fecha, matriculaProfesional);
 
-        } catch (Exception e) {
-            // Manejar la excepción
+        } catch (ValidationException ex) {
+           modelo.put("Error", ex.getMessage());
+           return "registroTurno.html";
         }
 
         return "turnoRegistrado.html";

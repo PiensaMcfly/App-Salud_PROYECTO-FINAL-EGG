@@ -71,10 +71,6 @@
 
 
                                 <!-- HORARIOS TURNOS CARGADOS POR PROFESIONAL Adolfo -->
-                                <!-- <p class="card-text" th:each="turnosProf : ${turnos}">
-                                                    <span th:text="${turnosProf.fecha + ' ' + turnosProf.horario}"> </span><br/>                              
-                                                </p><br> traigo lista de TURNOS y accedo a los atributos -->
-
 
 
                                 <button onclick="toggleTabla()" type="button" class="btn btn-outline-primary">Ver
@@ -125,13 +121,8 @@
 
                                     <input type="hidden" id="idTurnoHidden" name="idTurnoHidden" />
                                     <input type="hidden" name="dniUsuario" value="${sessionScope.usuariosession.dni}">
-
-
-                                    <!--Esto está de prueba para corroborar que persiste en el mismo turno-->
-
-
-
-                                    <button type="submit" class="btn btn-outline-primary">Solicitar Turno</button>
+                                  
+                                    <button th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'PACIENTE')}" type="submit" class="btn btn-outline-primary">Solicitar Turno</button>
 
                                 </form>
 

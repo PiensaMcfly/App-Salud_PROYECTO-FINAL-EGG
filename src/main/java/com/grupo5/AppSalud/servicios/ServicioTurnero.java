@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
+import javax.xml.bind.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,8 +48,10 @@ public class ServicioTurnero { //No le veo la necesidad de generar una validaci√
     @Autowired
     private HttpSession httpSession;
 
-    public void registrar(String hora, String fecha, String matricula) {
+    public void registrar(String hora, String fecha, String matricula) throws ValidationException {
         String matriculaProfesional = obtenerMatriculaProfesionalDeSesion();
+        
+        validar(matricula, fecha, hora);
 
         if (matriculaProfesional != null) {
             Turnero turnero = new Turnero();
@@ -88,10 +91,15 @@ public class ServicioTurnero { //No le veo la necesidad de generar una validaci√
         turneroRepositorio.deleteById(id);
     }
 
-    public void validar(String id, String hora, String fecha, Profesional profesional, Usuario usuario, Boolean Reserva) {
-        //Aqui ir√≠a la validaci√≥n para que se eviten los turnos repetidos.
+    public void validar(String matricula, String fecha, String hora) throws ValidationException {
 
+     Turnero turneroExiste = turneroRepositorio.validarTurnoExiste(matricula, fecha, hora);
+        if (turneroExiste != null) {
+            throw new ValidationException("Ya existe un turno registrado con esta fecha y horario");
     }
+    }
+    
+    
 
     public List<Turnero> listaTurnosPorMatricula(String matricula) {
         String matriculaProfesional = obtenerMatriculaProfesionalDeSesion();

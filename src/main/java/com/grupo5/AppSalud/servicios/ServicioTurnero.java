@@ -38,10 +38,10 @@ public class ServicioTurnero { //No le veo la necesidad de generar una validaci√
 
     @Autowired
     private ServicioFichaPaciente fichaServi;
-    
+
     @Autowired
     private UsuarioRepository usuarioRepository;
-    
+
     @Autowired
     private FichaPacienteRepository fichaRepository;
 
@@ -88,7 +88,23 @@ public class ServicioTurnero { //No le veo la necesidad de generar una validaci√
 
     @Transactional
     public void eliminarTurnero(String id) {
-        turneroRepositorio.deleteById(id);
+        // Obt√©n la lista de turneros
+        List<Turnero> listaTurneros = turneroRepositorio.buscarPorId(id).getProfesional().getTurneros();
+
+        // Itera sobre la lista para encontrar el Turnero con el ID deseado
+        Turnero turneroAEliminar = null;
+        for (Turnero turnero : listaTurneros) {
+            if (turnero.getId().equals(id)) {
+                turneroAEliminar = turnero;
+                break; // Sal del bucle una vez que se encuentre el Turnero
+            }
+        }
+
+        // Si se encontr√≥ el Turnero, elim√≠nalo de la lista y luego de la base de datos
+        if (turneroAEliminar != null) {
+            listaTurneros.remove(turneroAEliminar); // Elimina de la lista en memoria
+            turneroRepositorio.deleteById(id); // Elimina de la base de datos
+        }
     }
 
     public void validar(String matricula, String fecha, String hora) throws ValidationException {

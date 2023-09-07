@@ -107,6 +107,18 @@ public class TurneroControlador {
         model.addAttribute("listaTurnos", listaTurnos);
         return "listaTurnos.html";
     }
+    
+        @GetMapping("/profesional/eliminar/{id}")
+    public String eliminarTurnoYFicha(@PathVariable String id) {
+        try {
+            serviTurnero.eliminarTurnero(id);
+            return "redirect:../listar_turnos";
+        } catch (Exception e) {
+            System.out.println(e);
+            return "ProfesionalDashboard.html";
+        }
+
+    }
 
     private String obtenerDniUsuarioEnSesion() {
         Usuario usuarioEnSesion = (Usuario) session.getAttribute("usuariosession");

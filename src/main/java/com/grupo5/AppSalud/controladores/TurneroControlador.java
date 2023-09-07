@@ -9,6 +9,7 @@ import com.grupo5.AppSalud.entities.Turnero;
 import com.grupo5.AppSalud.entities.Usuario;
 import com.grupo5.AppSalud.exepciones.MiException;
 import com.grupo5.AppSalud.servicios.ServicioTurnero;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -88,12 +89,12 @@ public class TurneroControlador {
 
     @PreAuthorize("hasAnyRole('ROLE_PACIENTE')")
     @PostMapping("/usuario/turno_asignado")
-    public String asignarTurno(@RequestParam("idTurno") String idDelTurno, @RequestParam String notasTurnero) {
+    public String asignarTurno(@RequestParam("idTurno") String idDelTurno, @RequestParam String notasTurnero, ModelMap modelo) throws MiException, ParseException{
         try {
             String dniUsuario = obtenerDniUsuarioEnSesion();
             serviTurnero.asignarTurno(idDelTurno, notasTurnero, dniUsuario);
-        } catch (Exception e) {
-            // Manejar la excepción
+        } catch (MiException ex) {
+           modelo.put("Error", ex.getMessage());
         }
 
         return "turnoRegistrado.html";

@@ -131,20 +131,17 @@ public class ServicioTurnero { //No le veo la necesidad de generar una validaci�
                     turnero.setReserva(false); // Marcar el turno como no disponible
                     // Guardar el turno actualizado en la base de datos
                     turneroRepositorio.save(turnero);
-                    fichaServi.registrar(null, turnero.getFecha(), turnero.getUsuario().getNombreObraSocial(), turnero.getUsuario(), notasTurnero, turnero.getProfesional().getMatricula(), turnero.getUsuario().getDni(), idTurno);
+                    fichaServi.registrar(turnero.getNotasTurnero(), turnero.getFecha(), turnero.getUsuario().getNombreObraSocial(), turnero.getUsuario(), "", turnero.getProfesional().getMatricula(), turnero.getUsuario().getDni(), idTurno);
                 } else {
-                    // Manejar el caso en que no se encuentre el usuario
-                    System.out.println("No se encuentra el usuario.");
+                    throw new MiException("No se encuentra el usuario.");
                     // Puedes lanzar una excepción o manejar esto de otra manera según tu necesidad.
                 }
             } else {
-                // Manejar el caso en que el turno ya no está disponible
-                System.out.println("El turno ya no está disponible.");
+                throw new MiException("El turno ya no está disponible.");
                 // Puedes lanzar una excepción o manejar esto de otra manera según tu necesidad.
             }
         } else {
-            // Manejar el caso en que no se encuentre el turno
-            System.out.println("No se encuentra el turno.");
+           throw new MiException("No se encuentra el turno.");
             // Puedes lanzar una excepción o manejar esto de otra manera según tu necesidad.
         }
     }

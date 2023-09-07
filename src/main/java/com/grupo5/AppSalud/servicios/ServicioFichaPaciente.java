@@ -54,7 +54,7 @@ public class ServicioFichaPaciente {
 // Conversión de String a Date para la fecha del turno  
 
         fichapaciente.setFecha(fechaTurno);
-        fichapaciente.setNotasDeLaVisita("");
+        fichapaciente.setNotasDeLaVisita(notasDeLaVisita);
         fichapaciente.setOs(turno.getUsuario().getNombreObraSocial());
         fichapaciente.setAnotacionesFicha(anotacionesFicha);
         Profesional profesional = profesionalRepository.buscarPorMatricula(matricula);

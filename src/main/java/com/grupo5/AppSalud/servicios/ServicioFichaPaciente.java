@@ -61,9 +61,9 @@ public class ServicioFichaPaciente {
         fichapaciente.setProfesional(profesional);
         fichapacienteRepositorio.save(fichapaciente);
         
-        List<FichaPaciente> ficha = turno.getUsuario().getHistoriaC().getFichapaciente();
-        ficha.add(fichapaciente);
-        serviHistoriaClinica.modificar(turno.getUsuario().getDni(),ficha , turno.getUsuario(), notasDeLaVisita);
+       // List<FichaPaciente> ficha = turno.getUsuario().getHistoriaC().getFichapaciente();
+        //ficha.add(fichapaciente);
+        //serviHistoriaClinica.modificar(turno.getUsuario().getDni(),ficha , turno.getUsuario(), notasDeLaVisita);
     }
 
     public void eliminarFichaPaciente(String id) {

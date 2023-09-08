@@ -56,7 +56,7 @@
     <img   th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}" id="rotate-scale-up-vertical" alt="mdo" width="160" height="160" class="rounded-circle"> 
  </div>
 
-    <h1 class="display-5 fw-bold text-body-emphasis" th:text="'Bienvenido ' + ${session.usuariosession.nombre}"></h1>
+    <h1 class="display-5 fw-bold text-body-emphasis" th:text="'Bienvenido ' + ${session.usuariosession.nombre}  + ${session.usuariosession.apellido}"></h1>
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4 textoadm" >¡Bienvenido al Panel Administrativo!
      Aquí, en el sidebar izquierdo, tienes acceso a todas las acciones clave de la página: crear, modificar, listar y explorar. Nuestra interfaz es fácil de usar,

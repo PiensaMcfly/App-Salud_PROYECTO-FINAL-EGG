@@ -61,7 +61,7 @@
               width="170" height="170" class="rounded-circle">
           </div>
 
-          <h1 class="display-5 fw-bold text-body-emphasis" th:text="'Bienvenido ' + ${session.usuariosession.nombre}">
+          <h1 class="display-5 fw-bold text-body-emphasis" th:text="'Bienvenido ' + ${session.usuariosession.nombre} + ${session.usuariosession.apellido}">
           </h1>
           <div class="col-lg-6 mx-auto">
             <p class="lead mb-4 textoadm">¡Bienvenido al Panel Administrativo!
@@ -74,7 +74,7 @@
               <a
                 th:href="@{/profesional/modificarPerfilProfesional/{matricula}(matricula=${session.usuariosession.matricula})}">
                 <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Editar Perfil</button></a>
-              <a href=""><button type="button" class="btn btn-success btn-lg px-4">Mis Turnos</button></a>
+              <a href="/turnos/profesional/listar_turnos"><button type="button" class="btn btn-success btn-lg px-4">Mis Turnos</button></a>
             </div>
           </div>
         </div>

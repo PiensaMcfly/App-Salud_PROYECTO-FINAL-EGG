@@ -23,20 +23,25 @@
 
 </head>
 
-<!-- -------------------NAV BAR---------------------------- -->
-<header>
-       <nav th:replace="fragments/navbar :: nav"></nav>
-</header>
-  <!-- ---------------------------------------------------- -->
-  <br>
-
 <body>
-    
-
-
-  <!-- --------------------------------------LISTA DE ADMIN CON CRUD---------------------------------------------------------------------->
+  <!-- -----------------NAV BAR------------ -->
+  <header>
+    <nav th:replace="fragments/navbar :: nav"></nav>
+  </header>
+  <!-- ------------------------------------ -->
   <br>
-  <h3>LISTA DE USUARIOS Y PROFESIONALES</h3>
+  <br>
+  <br>
+
+  <!-- -----------------SideBar------------ -->
+  <aside class="sidebar1">
+    <div th:replace="fragments/sidebar :: sidebar"></div>
+  </aside>
+  <!-- ------------------------------------- -->
+
+  <!-- --------------------------------------LISTA DE TURNOS CRUD---------------------------------------------------------------------->
+  <br>
+  <h3>LISTA DE TURNOS</h3>
   <br>
   <center>
     <section class="listaADM1">
@@ -44,65 +49,76 @@
 
         <thead>
           <tr>
-            <th scope="col">. //---DNI---// .</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">ROL</th>
-            <th scope="col">O.Social</th>
-            <th scope="col">Acciones</th>
-            <th scope="col"></th>
-            <th scope="col">AlTAS</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Horario</th>
+            <th scope="col">Pofesional</th>
+            <th scope="col">Paciente</th>
+            <th scope="col">Reserva</th>
+            <th scope="col">Motivo de consulta</th>
+            <th scope="col">Ficha Paciente</th>
+            <th scope="col">Historia Clínica</th>
+            <th scope="col">Eliminar</th>
           </tr>
         </thead>
 
 
 
         <tbody>
-          <tr th:each="listaUsuario : ${listaUsuario}">
-            <th scope="row" th:text="${listaUsuario.dni}">
-
-                <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'PACIENTE')}">
-                    <img  th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}" alt="mdo" width="33" height="33" class="rounded-circle">
-               </div>
-
-               <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'MEDICO')}">
-                 <img   th:src="@{/imagen/perfil1/__${session.usuariosession.matricula}__}" alt="mdo" width="33" height="33" class="rounded-circle"> 
-               </div>
-
-               <div th:if="${#strings.equals(#strings.trim(session.usuariosession.rol), 'ADMIN')}">
-                  <img   th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}" alt="mdo" width="33" height="33" class="rounded-circle"> 
-               </div>
-
-
-
-            </th>
-            <td th:text="${listaUsuario.nombre}"></td>
-            <td th:text="${listaUsuario.apellido}"></td>
-            <td th:text="${listaUsuario.rol}"></td>
-            <td th:text="${listaUsuario.nombreObraSocial}"></td>
+          <tr th:each="turno : ${listaTurnos}">
+            <td th:text="${turno.fecha}"></td>
+            <td th:text="${turno.horario}"></td>
+            <!-- <td th:text="${turno.profesional.nombre + ' ' + turno.profesional.apellido}"></td>
+            <td th:text="${turno.usuario.nombre + ' ' + turno.usuario.apellido}"></td> -->
             <td>
-               <a th:href="@{/admin/modificarUsuario/{dni}(dni=${listaUsuario.dni})}"><i class="fa-solid fa-user-pen" style="color: #396dc6;"></i> Modificar</a>
+              <span th:if="${turno.Reserva}">Turno Disponible</span>
+              <span th:unless="${turno.Reserva}">Turno Asignado</span>
             </td>
-            <td>
-              <a th:href="@{/admin/eliminar/__${listaUsuario.dni}__}"
+            <td th:text="${turno.notasTurnero}">
+            </td>
+            <td><!--  =====Ficha Paciente==== -->
+              <a href="">
+                <button class="modify-button-ficha">
+                  <i class="fa-solid fa-receipt fa-lg iconoUser" style="color: #f2f6fd;"></i>
+                  <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8
+                            296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 
+                            25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg>
+                </button>
+              </a>
+            </td>
+            <td><!--  =====Historia Clinica==== -->
+              <a href="">
+                <button class="modify-button">
+                  <i class="fa-solid fa-receipt fa-lg iconoUser" style="color: #f2f6fd;"></i>
+                  <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8
+                            296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 
+                            25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg>
+                </button>
+              </a>
+            </td>
+            <td><!--  =====Eliminar==== -->
+              <a th:href="@{'/turnos/eliminar/' + ${turno.id}}"
                 onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">
-                <i class="fa-solid fa-trash" style="color: #db1432;"></i>Eliminar</a>
-            </td>
-            <td>
-              <i class="fa-solid fa-square-check fa-lg" style="color: #1fb729;"></i>---
-              <i class="fa-solid fa-triangle-exclamation fa-lg" style="color: #da1616;"></i>
+                <button class="delete-button">
+                  <svg class="delete-svgIcon" viewBox="0 0 448 512">
+                    <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4
+                            6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 
+                            45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z">
+                    </path>
+                  </svg>
+                </button>
+              </a>
             </td>
           </tr>
       </table>
-  </tbody>
+      </tbody>
 
-</section>
-<a href="/admin/dashboard"> <button type="button" class="btn btn-success">Volver</button></a>
+    </section>
+    <a href="/profesional/dashboard"> <button type="button" class="btn btn-success">Volver</button></a>
 
-</center>
+  </center>
 
-<!-----------------------------SCRIPTS------------------------------------------------ -->
-<script src="https://kit.fontawesome.com/9925dbe6e4.js" crossorigin="anonymous"></script>
- <!-- ------------------------------------------------------------------------------------>
+  <!-----------------------------SCRIPTS------------------------------------------------ -->
+  <script src="https://kit.fontawesome.com/9925dbe6e4.js" crossorigin="anonymous"></script>
+   <!-- ------------------------------------------------------------------------------------>
 
 </body>

@@ -9,12 +9,14 @@ import com.grupo5.AppSalud.entities.Turnero;
 import com.grupo5.AppSalud.entities.Usuario;
 import com.grupo5.AppSalud.exepciones.MiException;
 import com.grupo5.AppSalud.servicios.ServicioTurnero;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+import javax.xml.bind.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -50,13 +52,14 @@ public class TurneroControlador {
 
     @PreAuthorize("hasAnyRole('ROLE_MEDICO')")
     @PostMapping("/profesional/turno_registrado")
-    public String registrarTurno(@RequestParam String fecha, @RequestParam String hora) {
+    public String registrarTurno(@RequestParam String fecha, @RequestParam String hora, ModelMap modelo)throws ValidationException {
         try {
             String matriculaProfesional = obtenerMatriculaProfesionalDeSesion();
             serviTurnero.registrar(hora, fecha, matriculaProfesional);
 
-        } catch (Exception e) {
-            // Manejar la excepción
+        } catch (ValidationException ex) {
+           modelo.put("Error", ex.getMessage());
+           return "registroTurno.html";
         }
 
         return "turnoRegistrado.html";
@@ -86,15 +89,36 @@ public class TurneroControlador {
 
     @PreAuthorize("hasAnyRole('ROLE_PACIENTE')")
     @PostMapping("/usuario/turno_asignado")
-    public String asignarTurno(@RequestParam("idTurno") String idDelTurno, @RequestParam String notasTurnero) {
+    public String asignarTurno(@RequestParam("idTurno") String idDelTurno, @RequestParam String notasTurnero, ModelMap modelo) throws MiException, ParseException{
         try {
             String dniUsuario = obtenerDniUsuarioEnSesion();
             serviTurnero.asignarTurno(idDelTurno, notasTurnero, dniUsuario);
-        } catch (Exception e) {
-            // Manejar la excepción
+        } catch (MiException ex) {
+           modelo.put("Error", ex.getMessage());
         }
 
         return "turnoRegistrado.html";
+    }
+    
+        @PreAuthorize("hasAnyRole('ROLE_MEDICO')")
+    @GetMapping("/profesional/listar_turnos")
+    public String listarTurnoProfesional(ModelMap model) {
+        String matricula = obtenerMatriculaProfesionalDeSesion();
+        List<Turnero> listaTurnos = serviTurnero.listaTurnosPorMatricula(matricula);
+        model.addAttribute("listaTurnos", listaTurnos);
+        return "listaTurnos.html";
+    }
+    
+        @GetMapping("/profesional/eliminar/{id}")
+    public String eliminarTurnoYFicha(@PathVariable String id) {
+        try {
+            serviTurnero.eliminarTurnero(id);
+            return "redirect:../listar_turnos";
+        } catch (Exception e) {
+            System.out.println(e);
+            return "ProfesionalDashboard.html";
+        }
+
     }
 
     private String obtenerDniUsuarioEnSesion() {

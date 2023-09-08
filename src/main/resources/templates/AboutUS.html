@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+                  integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+            <!--Aca Linkeamos Boostrap para Incluir algunos recursos! -->
+
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+                  integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+            <!--Aca Linkeamos Font Awsome para Incluir algunos recursos! -->
+
+            <link rel="icon" href="/img/icono.png" type="image/svg+xml"> <!--  <-icono pestaña -->
+
+            <!-- <link rel="stylesheet" href="/index1.css"> -->
+
+            <link rel="stylesheet" href="/botonesAnimaciones.css">
+            <link rel="stylesheet" href="/index1.css">
+            <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+
+
+
+            <title>WebApp Salud</title>
+        </head>
+
+
+
+
+<body>
+
+     <!-- ------------NAV BAR----------------------------- -->
+     <header><nav th:replace="fragments/navbar :: nav"></nav> </header>
+    <!--------------------------------------------------- -->
+<br><br><br><br><br>
+    
+<center>
+
+
+    <div class="container my-5">
+        <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+          <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+            <h1 class="display-1 fw-bold lh-1 text-body-emphasis">MediWeb</h1>
+            <p class="lead">Acerca de Nosotros
+
+                MediWeb es una comunidad de médicos dedicados a su bienestar. Nuestra plataforma revoluciona la forma en que accede a la atención médica. Simplificamos su experiencia médica, eliminando las tediosas esperas en las clínicas y consultorios médicos.
+                
+               Nuestra plataforma le permite reservar sus citas médicas en línea con facilidad. Ya no tiene que preocuparse por ajustarse a horarios apretados o esperar en largas filas. Ponemos a su disposición un equipo de médicos especializados en Ginecología, Pediatría, Clínica y Cardiología, listos para cuidar de su salud.
+
+                Su bienestar es nuestra prioridad número uno. Únase a la comunidad de MediWeb y tome el control de su salud hoy mismo.
+                .</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+              
+              <a href="/"><button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Home</button></a>
+              
+            </div>
+          </div>
+          <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+              <img class="rounded-lg-3" src="/img/pagina1.png" alt="" width="720px">
+          </div>
+        </div>
+      </div>
+<Section class="containAboutUs">
+</Section>
+
+
+<h1>Colaboradores-Desarrolladores</h1>
+
+
+</center>
+
+<section id="team" class="team">
+  <div class="container">
+
+    <div class="section-title" data-aos="zoom-out">
+      <h2>Team</h2>
+      <h5>Nuestro Equipo de Desarrolladores Full-Stack</h5>
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+        <div class="member" data-aos="fade-up">
+          <div class="member-img">
+            <img src="/img/tincho.jfif" alt="mdo" width="300" height="300" class="img-fluid rounded-circle">
+            <div class="social">
+              <a href=""><i class="fa-brands fa-instagram fa-2xl"></i></a>
+              <a href=""><i class="fa-brands fa-github fa-2xl"></i></a>
+              <a href=""><i class="fa-brands fa-linkedin fa-2xl"></i></a>
+            </div>
+          </div>
+          <div class="member-info">
+            <h4>MARTIN MERINO</h4>
+            <span>FRONT END</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+        <div class="member" data-aos="fade-up" data-aos-delay="100">
+          <div class="member-img">
+            <img src="/img/dardo.jpeg" alt="mdo" width="300" height="100" class="img-fluid rounded-circle">
+            <div class="social">
+              <a href=""><i class="fa-brands fa-instagram fa-2xl"></i></a>
+              <a href=""><i class="fa-brands fa-github fa-2xl"></i></a>
+              <a href=""><i class="fa-brands fa-linkedin fa-2xl"></i></a>
+            </div>
+          </div>
+          <div class="member-info">
+            <h4>DARDO URIEL HERRERA</h4>
+            <span>BACK END</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+        <div class="member" data-aos="fade-up" data-aos-delay="200">
+          <div class="member-img">
+            <img src="/img/Crhis.jfif" alt="mdo" width="300" height="300" class="img-fluid rounded-circle">
+            <div class="social">
+              <a href=""><i class="fa-brands fa-instagram fa-2xl"></i></a>
+              <a href=""><i class="fa-brands fa-github fa-2xl"></i></a>
+              <a href=""><i class="fa-brands fa-linkedin fa-2xl"></i></a>
+            </div>
+          </div>
+          <div class="member-info">
+            <h4>CHRISTIAN ANTOGNAZZA</h4>
+            <span>BACK END</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+        <div class="member" data-aos="fade-up" data-aos-delay="300">
+          <div class="member-img">
+            <img src="/img/adolfo.jfif" alt="mdo" width="300" height="300" class="img-fluid rounded-circle">
+            <div class="social">
+             
+              <a href=""><i class="fa-brands fa-instagram fa-2xl"></i></a>
+              <a href=""><i class="fa-brands fa-github fa-2xl"></i></a>
+              <a href=""><i class="fa-brands fa-linkedin fa-2xl"></i></a>
+            </div>
+          </div>
+          <div class="member-info">
+            <h4>ADOLFO LUJAN</h4>
+            <span>BACK END</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section><!-- End Team Section -->
+
+
+
+<br><br><br>
+<footer th:replace="/fragments/footerChico :: footerChico"></footer> 
+
+<script src="https://kit.fontawesome.com/9925dbe6e4.js" crossorigin="anonymous"></script>
+
+
+
+</body>
+
+        </html>

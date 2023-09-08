@@ -67,4 +67,14 @@ public class ProfesionalControlador {
         return "redirect:../dashboard";
     }
 
+    
+    @GetMapping("/listapacientes")
+    public String ListadoPacientes(ModelMap modelo){
+    
+    List<Usuario> listaPacientes = serviUsuario.listaUsuario();
+    modelo.addAttribute("listaPacientes", listaPacientes);
+    return "listaPacientes.html";
+    }
+    
+    
 }

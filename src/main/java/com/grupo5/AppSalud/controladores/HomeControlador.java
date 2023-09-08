@@ -242,4 +242,13 @@ public class HomeControlador {
 
     }
 
+    
+    
+    @GetMapping("/aboutUs")
+    public String SobreNosotros() {
+
+        return "AboutUs.html";
+    }
+    
+    
 }

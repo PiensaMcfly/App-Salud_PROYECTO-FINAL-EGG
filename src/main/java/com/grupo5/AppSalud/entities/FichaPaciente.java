@@ -37,9 +37,8 @@ public class FichaPaciente {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    private String notasDeLaVisita; //intencion de la consulta - observaciones que completa profesional publicas
-    @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private String notasDeLaVisita; //intencion de la consulta - observaciones que completa usuario 
+    private String fecha;
     @Enumerated(EnumType.STRING)
     private ObrasSociales os;
     @OneToOne

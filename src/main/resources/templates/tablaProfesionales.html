@@ -17,6 +17,24 @@
             <link rel="icon" href="/img/icono.png" type="image/svg+xml"> <!--  <-icono pestaña -->
             <link rel="stylesheet" href="/profesionales.css">
 
+ <!-- Vendor CSS Files -->
+ <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+ <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+ <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+ <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+ <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+ <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+ <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+ <!-- Template Main CSS File -->
+
+
+ <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous"
+ defer></script>
+ <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet"
+       crossorigin="anonymous">
+
+
             <title>WebApp Salud</title>
 
             <style>
@@ -39,7 +57,7 @@
             <!-- -----------------------------------TABLA PROFESIONALES-------------------------------------------------------- -->
             <section class="doctores" >
                 <div class="d-grid gap-2 col-6 mx-auto">
-                    <button class="btn btn-secondary"><span>Profesionales de la especialidad <span th:text="${especialidad}"></span></span></button>
+                    <button  id="bton" class="btn btn-secondary"><span>Profesionales de la especialidad <span th:text="${especialidad}"></span></span></button>
                     <p></p>
                 </div>
                 <div class="row row-cols-1 row-cols-md-3 g-2"  >                                            
@@ -49,7 +67,8 @@
                         <div class="card mb-3" style="max-width: 540px;">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="/img/docs/medicoComun.jpg" class="img-fluid rounded-start" alt="...">
+                                    
+                                    <img id="imagens" th:src="@{/imagen/perfil1/{matricula}(matricula=${profesional.matricula})}" alt="mdo" width="125" height="125"  >
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -151,6 +170,6 @@
             <br><br><br>
 
             <!-- -------------------------------------------------FOOTER---------------------------------------------------------------------------->
-            <footer th:replace="/fragments/footer :: footer" </footer>
+            <footer th:replace="/fragments/footerChico :: footerChico"></footer> 
         </body>
     </html>

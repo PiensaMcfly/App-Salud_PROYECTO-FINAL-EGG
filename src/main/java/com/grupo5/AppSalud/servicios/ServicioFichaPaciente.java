@@ -29,6 +29,8 @@ import org.springframework.stereotype.Service;
 public class ServicioFichaPaciente {
 
     @Autowired
+    ServicioHistoriaClinica serviHistoriaClinica;
+    @Autowired
     FichaPacienteRepository fichapacienteRepositorio;
 
     @Autowired
@@ -36,36 +38,32 @@ public class ServicioFichaPaciente {
 
     @Autowired
     private ProfesionalRepository profesionalRepository;
-    
-       @Autowired
+
+    @Autowired
     private UsuarioRepository usuarioRepository;
 
     @Autowired
     private HttpSession httpSession;
 
     @Transactional
-    public void registrar(String notasDeLaVisita, String fechaTurno, ObrasSociales os, Usuario paciente, String anotacionesFicha, String matricula, String dni) throws MiException, ParseException {
-        String matriculaProfesional = obtenerMatriculaProfesionalDeSesion();
-
-        if (matriculaProfesional != null) {
-            FichaPaciente fichapaciente = new FichaPaciente();
-            Turnero turno = turneroRepository.buscarPorProfesional(matriculaProfesional);
-            fichapaciente.setTurno(turno);
+    public void registrar(String notasDeLaVisita, String fechaTurno, ObrasSociales os, Usuario paciente, String anotacionesFicha, String matricula, String dni, String idTurno) throws MiException, ParseException {
+        //Elimino el if debido a que la ficha se crea al asignar turno.
+        FichaPaciente fichapaciente = new FichaPaciente();
+        Turnero turno = turneroRepository.buscarPorId(idTurno);
+        fichapaciente.setTurno(turno);
 // Conversión de String a Date para la fecha del turno  
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date fecha = dateFormat.parse(turno.getFecha());
-            turneroRepository.buscarPorProfesional(matricula).getUsuario();
-            fichapaciente.setFecha(fecha);
-            fichapaciente.setNotasDeLaVisita(turno.getNotasTurnero());
-            fichapaciente.setOs(usuarioRepository.buscarPorDni(dni).getNombreObraSocial());
-            fichapaciente.setAnotacionesFicha(anotacionesFicha);
-            Profesional profesional = profesionalRepository.buscarPorMatricula(matricula);
-            fichapaciente.setProfesional(profesional);
-            fichapacienteRepositorio.save(fichapaciente);
-        } else {
-            System.out.println("No se encuentra la matrícula en la sesión.");
-        }
 
+        fichapaciente.setFecha(fechaTurno);
+        fichapaciente.setNotasDeLaVisita(notasDeLaVisita);
+        fichapaciente.setOs(turno.getUsuario().getNombreObraSocial());
+        fichapaciente.setAnotacionesFicha(anotacionesFicha);
+        Profesional profesional = profesionalRepository.buscarPorMatricula(matricula);
+        fichapaciente.setProfesional(profesional);
+        fichapacienteRepositorio.save(fichapaciente);
+        
+       // List<FichaPaciente> ficha = turno.getUsuario().getHistoriaC().getFichapaciente();
+        //ficha.add(fichapaciente);
+        //serviHistoriaClinica.modificar(turno.getUsuario().getDni(),ficha , turno.getUsuario(), notasDeLaVisita);
     }
 
     public void eliminarFichaPaciente(String id) {
@@ -75,20 +73,19 @@ public class ServicioFichaPaciente {
     public FichaPaciente buscarFichaPacientePorTurno(String turno) {
         return fichapacienteRepositorio.buscarPorTurno(turno);
     }
-    
-    public List<FichaPaciente> listaFichas(){
-    List<FichaPaciente> fichasDePacientes = fichapacienteRepositorio.buscarFichasPorProfesional(obtenerMatriculaProfesionalDeSesion());
-    return fichasDePacientes;
+
+    public List<FichaPaciente> listaFichas() {
+        List<FichaPaciente> fichasDePacientes = fichapacienteRepositorio.buscarFichasPorProfesional(obtenerMatriculaProfesionalDeSesion());
+        return fichasDePacientes;
     }
 
-    public String obtenerMatriculaProfesionalDeSesion(){ // Cambio de private a public
+    public String obtenerMatriculaProfesionalDeSesion() { // Cambio de private a public
         Profesional profesionalEnSesion = (Profesional) httpSession.getAttribute("usuariosession");
         if (profesionalEnSesion != null) {
             return profesionalEnSesion.getMatricula();
         }
         return null;
     }
-    
 
     //validaciones de ingreso de datos validar(notasDeLaVisita, fecha, os, paciente, profesional, anotacionesFicha);
 //    public void validar(String notasDeLaVisita, Date fecha, ObrasSociales os, Usuario paciente, Profesional profesional, String anotacionesFicha) throws MiException {

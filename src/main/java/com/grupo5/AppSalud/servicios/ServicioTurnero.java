@@ -4,16 +4,22 @@
  */
 package com.grupo5.AppSalud.servicios;
 
+import com.grupo5.AppSalud.entities.FichaPaciente;
 import com.grupo5.AppSalud.entities.Profesional;
 import com.grupo5.AppSalud.entities.Turnero;
 import com.grupo5.AppSalud.entities.Usuario;
+import com.grupo5.AppSalud.enumeraciones.ObrasSociales;
+import com.grupo5.AppSalud.exepciones.MiException;
+import com.grupo5.AppSalud.repository.FichaPacienteRepository;
 import com.grupo5.AppSalud.repository.ProfesionalRepository;
 import com.grupo5.AppSalud.repository.TurneroRepository;
 import com.grupo5.AppSalud.repository.UsuarioRepository;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
+import javax.xml.bind.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,13 +37,21 @@ public class ServicioTurnero { //No le veo la necesidad de generar una validaci�
     private ProfesionalRepository profesionalRepository;
 
     @Autowired
+    private ServicioFichaPaciente fichaServi;
+
+    @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private FichaPacienteRepository fichaRepository;
 
     @Autowired
     private HttpSession httpSession;
 
-    public void registrar(String hora, String fecha, String matricula) {
+    public void registrar(String hora, String fecha, String matricula) throws ValidationException {
         String matriculaProfesional = obtenerMatriculaProfesionalDeSesion();
+        
+        validar(matricula, fecha, hora);
 
         if (matriculaProfesional != null) {
             Turnero turnero = new Turnero();
@@ -74,13 +88,34 @@ public class ServicioTurnero { //No le veo la necesidad de generar una validaci�
 
     @Transactional
     public void eliminarTurnero(String id) {
-        turneroRepositorio.deleteById(id);
+        // Obtén la lista de turneros
+        List<Turnero> listaTurneros = turneroRepositorio.buscarPorId(id).getProfesional().getTurneros();
+
+        // Itera sobre la lista para encontrar el Turnero con el ID deseado
+        Turnero turneroAEliminar = null;
+        for (Turnero turnero : listaTurneros) {
+            if (turnero.getId().equals(id)) {
+                turneroAEliminar = turnero;
+                break; // Sal del bucle una vez que se encuentre el Turnero
+            }
+        }
+
+        // Si se encontró el Turnero, elimínalo de la lista y luego de la base de datos
+        if (turneroAEliminar != null) {
+            listaTurneros.remove(turneroAEliminar); // Elimina de la lista en memoria
+            turneroRepositorio.deleteById(id); // Elimina de la base de datos
+        }
     }
 
-    public void validar(String id, String hora, String fecha, Profesional profesional, Usuario usuario, Boolean Reserva) {
-        //Aqui iría la validación para que se eviten los turnos repetidos.
+    public void validar(String matricula, String fecha, String hora) throws ValidationException {
 
+     Turnero turneroExiste = turneroRepositorio.validarTurnoExiste(matricula, fecha, hora);
+        if (turneroExiste != null) {
+            throw new ValidationException("Ya existe un turno registrado con esta fecha y horario");
     }
+    }
+    
+    
 
     public List<Turnero> listaTurnosPorMatricula(String matricula) {
         String matriculaProfesional = obtenerMatriculaProfesionalDeSesion();
@@ -95,7 +130,7 @@ public class ServicioTurnero { //No le veo la necesidad de generar una validaci�
         }
     }
 
-    public void asignarTurno(String idTurno, String notasTurnero, String dni) {
+    public void asignarTurno(String idTurno, String notasTurnero, String dni) throws MiException, ParseException {
         // Buscar el turno por su ID
         Turnero turnero = turneroRepositorio.buscarPorId(idTurno);
 
@@ -110,22 +145,19 @@ public class ServicioTurnero { //No le veo la necesidad de generar una validaci�
                     turnero.setUsuario(usuario);
                     turnero.setNotasTurnero(notasTurnero);
                     turnero.setReserva(false); // Marcar el turno como no disponible
-
                     // Guardar el turno actualizado en la base de datos
                     turneroRepositorio.save(turnero);
+                    fichaServi.registrar(turnero.getNotasTurnero(), turnero.getFecha(), turnero.getUsuario().getNombreObraSocial(), turnero.getUsuario(), "", turnero.getProfesional().getMatricula(), turnero.getUsuario().getDni(), idTurno);
                 } else {
-                    // Manejar el caso en que no se encuentre el usuario
-                    System.out.println("No se encuentra el usuario.");
+                    throw new MiException("No se encuentra el usuario.");
                     // Puedes lanzar una excepción o manejar esto de otra manera según tu necesidad.
                 }
             } else {
-                // Manejar el caso en que el turno ya no está disponible
-                System.out.println("El turno ya no está disponible.");
+                throw new MiException("El turno ya no está disponible.");
                 // Puedes lanzar una excepción o manejar esto de otra manera según tu necesidad.
             }
         } else {
-            // Manejar el caso en que no se encuentre el turno
-            System.out.println("No se encuentra el turno.");
+           throw new MiException("No se encuentra el turno.");
             // Puedes lanzar una excepción o manejar esto de otra manera según tu necesidad.
         }
     }

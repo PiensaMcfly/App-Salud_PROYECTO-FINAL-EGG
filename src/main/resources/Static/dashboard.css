@@ -146,3 +146,16 @@ a {
     transform: scale(1) rotateY(360deg);
   }
 }
+
+
+
+.datosPaciente {
+
+background-color: aliceblue;
+
+}
+
+.datosPaciente h1{
+  display: flex;
+  justify-content: space-around;
+}

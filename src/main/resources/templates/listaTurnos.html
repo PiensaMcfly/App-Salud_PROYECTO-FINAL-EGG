@@ -67,8 +67,8 @@
           <tr th:each="turno : ${listaTurnos}">
             <td th:text="${turno.fecha}"></td>
             <td th:text="${turno.horario}"></td>
-            <td th:text="${turno.profesional.nombre + ' ' + turno.profesional.apellido}"></td>
-            <td th:text="${turno.usuario.nombre + ' ' + turno.usuario.apellido}"></td>
+            <!-- <td th:text="${turno.profesional.nombre + ' ' + turno.profesional.apellido}"></td>
+            <td th:text="${turno.usuario.nombre + ' ' + turno.usuario.apellido}"></td> -->
             <td>
               <span th:if="${turno.Reserva}">Turno Disponible</span>
               <span th:unless="${turno.Reserva}">Turno Asignado</span>
